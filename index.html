@@ -1,1135 +1,993 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terry's BBQ | Low, Slow, & Southern</title>
-    <meta name="description" content="Authentic Kentucky BBQ. Slow smoked brisket, ribs, and pork in a down-home southern atmosphere. Experience Terry's BBQ today.">
+    <title>Terry's BBQ | Low & Slow Kentucky Style</title>
+    <meta name="description" content="Authentic Kentucky BBQ. Slow smoked meats, mustard-based sauce, and a down-home southern atmosphere.">
     
-    <!-- Preconnect for performance -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Permanent+Marker&family=Roboto:wght@300;400;500&family=Rye&display=swap" rel="stylesheet">
     
-    <!-- Typography System: Z.ai Spec -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Permanent+Marker&family=Roboto:wght@300;400;500;700&family=Rye&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (via CDN for standalone portability) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#BF360C', /* Deep Burnt Orange */
+                        secondary: '#3E2723', /* Dark Leather */
+                        accent: '#FFAB00', /* Golden Amber */
+                        background: '#121212', /* Rich Charcoal */
+                        surface: '#1E1E1E', /* Lighter Charcoal */
+                        mustard: '#E1AD01' /* Custom Mustard */
+                    },
+                    fontFamily: {
+                        heading: ['Rye', 'serif'],
+                        subheading: ['Oswald', 'sans-serif'],
+                        body: ['Roboto', 'sans-serif'],
+                        accent: ['Permanent Marker', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'wood-pattern': "url('https://www.transparenttextures.com/patterns/wood-pattern.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* 
-         * DESIGN SYSTEM: TERRY'S BBQ
-         * Theme: Down Home Southern / Old Western Tavern
-         * Palette: Brown, Black, Orange
-         */
-
-        :root {
-            /* Palette */
-            --primary: #BF360C;      /* Deep Burnt Orange */
-            --primary-hover: #E64A19;
-            --secondary: #3E2723;    /* Dark Coffee Bean / Leather */
-            --accent: #FFAB00;       /* Golden Amber */
-            --bg-dark: #121212;      /* Rich Charcoal */
-            --bg-surface: #1E1E1E;   /* Lighter Charcoal */
-            --text-main: #F5F5F5;    /* Off-White */
-            --text-muted: #9E9E9E;   /* Cool Grey */
-            
-            /* Spacing */
-            --container-width: 1280px;
-            --header-height: 80px;
-            --section-padding: 6rem;
-            
-            /* Animation Curves */
-            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        /* RESET & BASE */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Custom Styles & Animation Utilities */
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            background-color: #121212;
+            color: #F5F5F5;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 400;
-            line-height: 1.2;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3E2723;
+            border: 2px solid #121212;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #BF360C;
         }
 
-        h1, h2 { font-family: 'Rye', cursive; }
-        h3, h4, h5, h6, .nav-link, .btn { font-family: 'Oswald', sans-serif; }
-        .handwritten { font-family: 'Permanent Marker', cursive; }
-
-        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
-        button, input, textarea { font-family: inherit; }
-
-        /* UTILITIES */
-        .container {
-            width: 100%;
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .text-primary { color: var(--primary); }
-        .text-accent { color: var(--accent); }
-        .text-center { text-align: center; }
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-center { justify-content: center; }
-        .grid { display: grid; }
-        .hidden { display: none; }
-
-        /* VISIBILITY ANIMATIONS (Fade Up) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* COMPONENTS: BUTTONS */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            border: 1px solid var(--primary);
-            box-shadow: 0 4px 15px rgba(191, 54, 12, 0.3);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(191, 54, 12, 0.5);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background-color: white;
-            color: var(--bg-dark);
-            transform: translateY(-2px);
-        }
-
-        /* HEADER */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            z-index: 100;
-            transition: background-color 0.3s ease, padding 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .header.scrolled {
-            background-color: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo {
-            font-family: 'Rye', cursive;
-            font-size: 1.75rem;
-            color: white;
-            letter-spacing: 1px;
-        }
-        .logo span { color: var(--primary); }
-
-        .desktop-nav { display: none; }
-        .desktop-nav a {
-            margin-left: 2rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            position: relative;
-        }
-        .desktop-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .desktop-nav a:hover::after { width: 100%; }
-        .desktop-nav a:hover { color: var(--primary); }
-
-        .mobile-toggle {
-            display: block;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            z-index: 102;
-        }
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-        
-        /* MOBILE NAV DRAWER */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--secondary);
-            z-index: 101;
-            transform: translateX(100%);
-            transition: transform 0.4s var(--ease-out);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjM0UyNzIzIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiM0RTM0MmUiLz4KPC9zdmc+');
-        }
-        .mobile-nav.active { transform: translateX(0); }
-        .mobile-nav a {
-            font-family: 'Rye', cursive;
-            font-size: 2rem;
-            margin: 1.5rem 0;
-            color: var(--text-main);
-        }
-        .mobile-nav a:hover { color: var(--primary); }
-
-        /* HERO SECTION */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background-color: #000;
-        }
-
+        /* Hero Animation */
         .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
+            transition: transform 10s ease-out;
+        }
+        .hero-container:hover .hero-bg {
+            transform: scale(1.05);
+        }
+
+        /* Smoke Canvas */
+        #smokerCanvas {
+            border-bottom: 4px solid #BF360C;
+            background: linear-gradient(to bottom, #2a1e1e, #121212);
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #BF360C;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(191, 54, 12, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            z-index: 1;
-            animation: slowZoom 20s infinite alternate;
+            height: 4px;
+            cursor: pointer;
+            background: #3E2723;
+            border-radius: 2px;
         }
 
-        @keyframes slowZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
-            z-index: 2;
-        }
-
-        #smoke-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3;
-            pointer-events: none;
-            mix-blend-mode: screen;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 4;
-            text-align: center;
-            max-width: 800px;
-            padding: 0 1rem;
-        }
-
-        .hero-subtitle {
-            font-family: 'Oswald', sans-serif;
-            color: var(--accent);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .hero-desc {
-            font-size: 1.25rem;
-            color: #ddd;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        /* SOCIAL PROOF MARQUEE */
-        .marquee-section {
-            background-color: var(--primary);
-            padding: 1.5rem 0;
-            overflow: hidden;
-            border-bottom: 4px solid var(--secondary);
-        }
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 20s linear infinite;
-        }
-        .marquee-item {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.9);
-            margin: 0 3rem;
-            display: flex;
-            align-items: center;
-        }
-        .marquee-item::before {
-            content: '★';
-            color: var(--accent);
-            margin-right: 10px;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* SECTIONS GENERAL */
-        section {
-            padding: var(--section-padding) 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
-        }
-        .section-title span { color: var(--primary); }
-        
-        .section-desc {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* MEAT LOCKER (FEATURED MENU) */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            margin-top: 2rem;
-        }
-        
-        .menu-card {
-            display: grid;
-            grid-template-columns: 1fr;
-            background-color: var(--bg-surface);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(191, 54, 12, 0.15);
-        }
-
-        .menu-img-wrapper {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-        }
-
-        .menu-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .menu-card:hover .menu-img { transform: scale(1.05); }
-
-        .menu-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: var(--accent);
-            color: var(--bg-dark);
-            padding: 0.25rem 0.75rem;
-            font-family: 'Permanent Marker', cursive;
-            transform: rotate(-5deg);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-
-        .menu-content {
-            padding: 2rem;
+        /* Toast Notification */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 10px;
         }
-
-        .menu-title {
-            font-size: 2rem;
+        .toast {
+            background: #1E1E1E;
+            border-left: 4px solid #BF360C;
             color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .menu-desc {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .menu-footer {
+            padding: 16px 24px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
+            min-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
-        .menu-price {
-            font-size: 1.5rem;
-            color: var(--accent);
-            font-family: 'Oswald', sans-serif;
-        }
-
-        .add-btn {
-            background: transparent;
-            border: 1px solid var(--text-muted);
-            color: var(--text-main);
-            padding: 0.5rem 1.5rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .add-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* ATMOSPHERE (ABOUT) */
-        .about-section {
-            background-color: var(--secondary);
-            position: relative;
-        }
-        
-        .split-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: #ddd;
-        }
-
-        .about-img-container {
-            position: relative;
-        }
-        
-        .about-img {
-            border: 10px solid rgba(255,255,255,0.05);
-            filter: sepia(0.3) contrast(1.1);
-            transition: filter 0.5s ease;
-        }
-        .about-img:hover { filter: sepia(0) contrast(1); }
-
-        /* CATERING FORM */
-        .catering-section {
-            background-color: var(--bg-dark);
-        }
-
-        .form-container {
-            background-color: var(--bg-surface);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem;
-            border-top: 4px solid var(--primary);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            background-color: var(--bg-dark);
-            border: 1px solid #333;
-            border-bottom: 2px solid #444;
-            padding: 1rem;
-            color: white;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-bottom-color: var(--primary);
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            color: var(--text-muted);
-        }
-
-        .checkbox-item input {
-            margin-right: 0.5rem;
-            accent-color: var(--primary);
-            width: 1.2rem;
-            height: 1.2rem;
-        }
-
-        /* TESTIMONIALS (POLAROIDS) */
-        .testimonials {
-            background-color: #2a2a2a;
-            padding-bottom: 8rem;
-        }
-
-        .polaroid-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .polaroid {
-            background-color: #f0f0f0;
-            padding: 1.5rem 1.5rem 3rem 1.5rem;
-            color: #333;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease, z-index 0s;
-            position: relative;
-        }
-
-        .polaroid:nth-child(odd) { transform: rotate(2deg); }
-        .polaroid:nth-child(even) { transform: rotate(-2deg); }
-        .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; }
-
-        .quote-icon {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 3rem;
-            color: #ddd;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .quote-text {
-            font-family: 'Roboto', serif;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: #444;
-        }
-
-        .author { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; color: var(--secondary); }
-        .role { font-size: 0.9rem; color: #666; }
-
-        /* FOOTER */
-        .footer {
-            background-color: #0a0a0a;
-            padding: 4rem 0 2rem;
-            border-top: 1px solid #333;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            color: white;
-            font-family: 'Oswald', sans-serif;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        .footer-col ul li { margin-bottom: 0.8rem; }
-        .footer-col a:hover { color: var(--primary); }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid #222;
-            padding-top: 2rem;
-        }
-
-        /* RESPONSIVE */
-        @media (min-width: 768px) {
-            h1 { font-size: 5rem; }
-            .desktop-nav { display: block; }
-            .mobile-toggle { display: none; }
-            
-            .menu-grid { grid-template-columns: repeat(2, 1fr); }
-            .menu-card:nth-child(even) .menu-content { order: -1; } /* Zig zag */
-            
-            .split-layout { grid-template-columns: 1fr 1fr; }
-            
-            .hero-title { font-size: 5rem; }
-            .hero-actions { gap: 2rem; }
-        }
-
-        @media (min-width: 1024px) {
-            .menu-grid { grid-template-columns: repeat(3, 1fr); }
-            .menu-card { grid-template-columns: 1fr; } /* Reset zig zag for 3 col if needed, or keep */
-        }
-
-        /* STICKY MOBILE CTA (Fixed Bottom) */
-        .mobile-sticky-cta {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--bg-surface);
-            border-top: 1px solid #333;
-            padding: 1rem;
-            z-index: 90;
-            justify-content: space-around;
-        }
-        @media (max-width: 767px) {
-            .mobile-sticky-cta { display: flex; }
-            body { padding-bottom: 70px; }
+        /* Meat Cut Animation */
+        .meat-visual {
+            transition: background-color 2s ease;
         }
     </style>
 </head>
-<body>
+<body class="font-body selection:bg-primary selection:text-white">
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="container header-inner">
-            <a href="#" class="logo">Terry's <span>BBQ</span></a>
-            
-            <nav class="desktop-nav">
-                <a href="#meat-locker">Menu</a>
-                <a href="#about">Atmosphere</a>
-                <a href="#catering">Catering</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="#catering" class="text-primary">Order Now</a>
-            </nav>
-
-            <button class="mobile-toggle" aria-label="Toggle Menu" id="menuToggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-fire text-primary text-2xl animate-pulse"></i>
+                    <span class="font-heading text-2xl tracking-wider text-white">TERRY'S <span class="text-primary">BBQ</span></span>
                 </div>
-            </button>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="font-subheading uppercase tracking-wide hover:text-primary transition">Home</a>
+                    <a href="#process" class="font-subheading uppercase tracking-wide hover:text-primary transition">The Process</a>
+                    <a href="#menu" class="font-subheading uppercase tracking-wide hover:text-primary transition">Meat Locker</a>
+                    <a href="#catering" class="font-subheading uppercase tracking-wide hover:text-primary transition">Catering</a>
+                    <a href="#contact" class="font-subheading uppercase tracking-wide hover:text-primary transition">Visit Us</a>
+                    <button onclick="document.getElementById('catering').scrollIntoView({behavior: 'smooth'})" class="bg-primary hover:bg-orange-700 text-white font-subheading uppercase px-6 py-2 rounded-sm transition transform hover:-translate-y-1 shadow-lg">
+                        Order Now
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-primary focus:outline-none" aria-label="Open menu">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="block px-3 py-2 text-base font-medium text-white hover:bg-secondary hover:text-primary rounded-md">Home</a>
+                <a href="#process" class="block px-3 py-2 text-base font-medium text-white hover:bg-secondary hover:text-primary rounded-md">The Process</a>
+                <a href="#menu" class="block px-3 py-2 text-base font-medium text-white hover:bg-secondary hover:text-primary rounded-md">Meat Locker</a>
+                <a href="#catering" class="block px-3 py-2 text-base font-medium text-white hover:bg-secondary hover:text-primary rounded-md">Catering</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-white hover:bg-secondary hover:text-primary rounded-md">Visit Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden hero-container">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/seed/bbqfire/1920/1080.jpg" alt="Smoky BBQ Background" class="w-full h-full object-cover hero-bg opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <div class="inline-block border border-primary/50 bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full mb-6">
+                <span class="text-accent font-accent text-sm tracking-widest uppercase">Est. 1985 • Louisville, KY</span>
+            </div>
+            <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight drop-shadow-lg">
+                LOW, SLOW & <br> <span class="text-primary">SOUTHERN</span>
+            </h1>
+            <p class="font-subheading text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto uppercase tracking-wide">
+                We slow smoke everything from chicken to pork. Based out of Kentucky, everything is finished in our signature mustard BBQ sauce.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#catering" class="bg-primary text-white font-subheading text-lg uppercase tracking-widest px-10 py-4 hover:bg-orange-700 transition-all transform hover:-translate-y-1 shadow-lg rounded-sm">
+                    Request Catering
+                </a>
+                <a href="#menu" class="bg-transparent border-2 border-white text-white font-subheading text-lg uppercase tracking-widest px-10 py-4 hover:bg-white hover:text-background transition-all rounded-sm">
+                    View Menu
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-white text-3xl opacity-70"></i>
         </div>
     </header>
 
-    <!-- Mobile Nav Drawer -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#meat-locker">Menu</a>
-        <a href="#about">Atmosphere</a>
-        <a href="#catering">Catering</a>
-        <a href="#testimonials">Reviews</a>
-        <a href="#catering" style="color: var(--primary);">Order Pickup</a>
-    </div>
+    <!-- Animation Showcase: The Process -->
+    <section id="process" class="py-24 bg-background relative overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Controls & Info -->
+                <div class="order-2 lg:order-1 space-y-8">
+                    <div>
+                        <h2 class="font-heading text-4xl text-white mb-4">THE <span class="text-primary">SMOKE RING</span> SCIENCE</h2>
+                        <p class="text-gray-400 font-body leading-relaxed mb-6">
+                            Good BBQ isn't just grilling; it's chemistry. We use white oak and hickory to maintain a steady 225°F. 
+                            Use our simulator below to see how heat and airflow affect the meat and smoke density.
+                        </p>
+                    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="https://picsum.photos/seed/bbqhero1/1920/1080.jpg" alt="Slow smoked brisket" class="hero-bg">
-        <div class="hero-overlay"></div>
-        <canvas id="smoke-canvas"></canvas>
-        
-        <div class="hero-content reveal">
-            <p class="hero-subtitle">Est. 1985 • Kentucky</p>
-            <h1 class="hero-title">Low, Slow, & Southern</h1>
-            <p class="hero-desc">We slow smoke everything from chicken to pork. Based out of Kentucky, everything is bathed in our secret mustard-based BBQ sauce.</p>
-            <div class="hero-actions">
-                <a href="#catering" class="btn btn-primary">Request Catering</a>
-                <a href="#meat-locker" class="btn btn-secondary">View Menu</a>
+                    <!-- Animation Controls -->
+                    <div class="bg-surface p-8 border border-white/10 rounded-lg shadow-xl">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-subheading text-xl text-white uppercase">Pitmaster Controls</h3>
+                            <span id="status-badge" class="bg-green-900 text-green-200 text-xs px-2 py-1 rounded uppercase font-bold">Status: Heating Up</span>
+                        </div>
+
+                        <!-- Control: Temperature -->
+                        <div class="mb-8">
+                            <label class="flex justify-between text-sm font-subheading uppercase tracking-wider text-gray-400 mb-2">
+                                <span>Pit Temperature</span>
+                                <span id="temp-display" class="text-primary">225°F</span>
+                            </label>
+                            <input type="range" id="temp-slider" min="150" max="350" value="225" class="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-600 mt-2 font-body">
+                                <span>Cold Smoke (150°F)</span>
+                                <span>Hot & Fast (350°F)</span>
+                            </div>
+                        </div>
+
+                        <!-- Control: Damper -->
+                        <div class="mb-8">
+                            <label class="flex justify-between text-sm font-subheading uppercase tracking-wider text-gray-400 mb-2">
+                                <span>Smoke Stack Damper</span>
+                                <span id="damper-display" class="text-accent">50%</span>
+                            </label>
+                            <input type="range" id="damper-slider" min="0" max="100" value="50" class="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-4">
+                            <button id="toggle-anim-btn" class="flex-1 bg-secondary border border-white/20 hover:border-primary text-white font-subheading uppercase py-3 transition-colors">
+                                <i class="fa-solid fa-pause mr-2"></i> Pause Simulation
+                            </button>
+                            <button id="reset-anim-btn" class="px-6 border border-white/20 hover:bg-white hover:text-black text-white font-subheading uppercase py-3 transition-colors">
+                                <i class="fa-solid fa-rotate-right mr-2"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas Animation -->
+                <div class="order-1 lg:order-2 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-primary to-accent opacity-20 blur-xl rounded-full"></div>
+                    <canvas id="smokerCanvas" width="600" height="400" class="relative z-10 w-full h-auto rounded-lg shadow-2xl border border-white/10"></canvas>
+                    <div class="mt-4 flex justify-between items-center text-xs text-gray-500 font-mono">
+                        <span><i class="fa-solid fa-code-branch"></i> RENDERER: CANVAS 2D API</span>
+                        <span id="fps-counter">60 FPS</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <div class="marquee-section">
-        <div class="marquee-content">
-            <div class="marquee-item">Voted Best Ribs in Kentucky</div>
-            <div class="marquee-item">Featured in Southern Living</div>
-            <div class="marquee-item">"The Mustard Sauce is Magic" - Food Network</div>
-            <div class="marquee-item">4.9 Stars on Google Reviews</div>
-            <div class="marquee-item">Family Owned for 3 Generations</div>
-            <!-- Duplicate for infinite loop -->
-            <div class="marquee-item">Voted Best Ribs in Kentucky</div>
-            <div class="marquee-item">Featured in Southern Living</div>
-            <div class="marquee-item">"The Mustard Sauce is Magic" - Food Network</div>
-            <div class="marquee-item">4.9 Stars on Google Reviews</div>
-            <div class="marquee-item">Family Owned for 3 Generations</div>
-        </div>
-    </div>
+    <!-- Menu Section (The Meat Locker) -->
+    <section id="menu" class="py-24 bg-surface relative">
+        <!-- Background Texture -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');"></div>
 
-    <!-- The Meat Locker (Featured Menu) -->
-    <section id="meat-locker" class="container">
-        <div class="section-header reveal">
-            <h2 class="section-title">The <span>Meat Locker</span></h2>
-            <p class="section-desc">Fresh off the pit. Served with white bread, pickles, and your choice of two sides.</p>
-        </div>
-
-        <div class="menu-grid">
-            <!-- Item 1 -->
-            <div class="menu-card reveal">
-                <div class="menu-img-wrapper">
-                    <img src="https://picsum.photos/seed/bbqribs/800/600.jpg" alt="St. Louis Style Ribs" class="menu-img">
-                    <span class="menu-badge">Pitmaster's Pick</span>
-                </div>
-                <div class="menu-content">
-                    <h3 class="menu-title">St. Louis Ribs</h3>
-                    <p class="menu-desc">Dry rubbed and smoked for 12 hours over hickory wood. Glazed with our signature mustard sauce.</p>
-                    <div class="menu-footer">
-                        <span class="menu-price">$24.99</span>
-                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
-                    </div>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-accent font-accent text-xl uppercase">Our Specialties</span>
+                <h2 class="font-heading text-4xl md:text-5xl text-white mt-2">THE <span class="text-primary">MEAT LOCKER</span></h2>
+                <div class="h-1 w-24 bg-primary mx-auto mt-4"></div>
             </div>
 
-            <!-- Item 2 -->
-            <div class="menu-card reveal">
-                <div class="menu-img-wrapper">
-                    <img src="https://picsum.photos/seed/bbqbrisket/800/600.jpg" alt="Texas Style Brisket" class="menu-img">
-                </div>
-                <div class="menu-content">
-                    <h3 class="menu-title">Prime Brisket</h3>
-                    <p class="menu-desc">Marbled Black Angus brisket smoked low and slow. Moist or lean cut, chopped or sliced by hand.</p>
-                    <div class="menu-footer">
-                        <span class="menu-price">$22.99</span>
-                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Item 1 -->
+                <article class="group bg-background border-l-4 border-primary hover:shadow-[0_10px_20px_rgba(191,54,12,0.15)] transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/brisket/600/400.jpg" alt="Texas Style Brisket" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-accent text-background font-accent text-sm px-3 py-1 transform -rotate-6 shadow-md">
+                            Pitmaster's Pick
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-subheading text-2xl text-white uppercase">Prime Brisket</h3>
+                            <span class="text-primary font-bold text-lg">$$</span>
+                        </div>
+                        <p class="text-gray-400 font-body mb-6 text-sm leading-relaxed">
+                            14-hour smoke over Post Oak wood. Moist and tender, sliced thin or chopped. Served with white bread and pickles.
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="flex-1 bg-secondary hover:bg-primary text-white font-subheading text-sm uppercase py-2 transition-colors">
+                                Add to Plate
+                            </button>
+                            <button class="w-10 h-10 flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-colors text-gray-400">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
 
-            <!-- Item 3 -->
-            <div class="menu-card reveal">
-                <div class="menu-img-wrapper">
-                    <img src="https://picsum.photos/seed/bbqpork/800/600.jpg" alt="Pulled Pork Shoulder" class="menu-img">
-                    <span class="menu-badge">House Favorite</span>
-                </div>
-                <div class="menu-content">
-                    <h3 class="menu-title">Pulled Pork</h3>
-                    <p class="menu-desc">Boston butt smoked for 14 hours until it falls apart. Mixed with a hint of vinegar and our sauce.</p>
-                    <div class="menu-footer">
-                        <span class="menu-price">$18.99</span>
-                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
+                <!-- Item 2 -->
+                <article class="group bg-background border-l-4 border-transparent hover:border-primary hover:shadow-[0_10px_20px_rgba(191,54,12,0.15)] transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/ribs/600/400.jpg" alt="St. Louis Ribs" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-subheading text-2xl text-white uppercase">St. Louis Ribs</h3>
+                            <span class="text-primary font-bold text-lg">$$</span>
+                        </div>
+                        <p class="text-gray-400 font-body mb-6 text-sm leading-relaxed">
+                            Spare ribs trimmed St. Louis style. Dry rubbed with our secret spices and mopped with vinegar every hour.
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="flex-1 bg-secondary hover:bg-primary text-white font-subheading text-sm uppercase py-2 transition-colors">
+                                Add to Plate
+                            </button>
+                            <button class="w-10 h-10 flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-colors text-gray-400">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="group bg-background border-l-4 border-transparent hover:border-primary hover:shadow-[0_10px_20px_rgba(191,54,12,0.15)] transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/pulledpork/600/400.jpg" alt="Pulled Pork" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-primary text-white font-accent text-sm px-3 py-1 transform rotate-3 shadow-md">
+                            Kentucky Style
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-subheading text-2xl text-white uppercase">Pulled Pork</h3>
+                            <span class="text-primary font-bold text-lg">$</span>
+                        </div>
+                        <p class="text-gray-400 font-body mb-6 text-sm leading-relaxed">
+                            Boston butt smoked for 12 hours. Hand-pulled and tossed in our famous Golden Mustard BBQ Sauce.
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="flex-1 bg-secondary hover:bg-primary text-white font-subheading text-sm uppercase py-2 transition-colors">
+                                Add to Plate
+                            </button>
+                            <button class="w-10 h-10 flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-colors text-gray-400">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
             </div>
-        </div>
-        
-        <div class="text-center" style="margin-top: 3rem;">
-            <a href="#" class="btn btn-secondary">View Full Menu</a>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-b-2 border-primary text-primary font-subheading uppercase tracking-widest hover:text-white hover:border-white transition-colors">
+                    View Full Menu
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Atmosphere (About) -->
-    <section id="about" class="about-section">
-        <div class="container split-layout">
-            <div class="about-text reveal">
-                <h3>A Story of Smoke</h3>
-                <p>Terry Foster started cooking in a backyard shed in 1985 with nothing but a smoker made from an old oil tank and a dream. Thirty years later, we're still serving the same recipes, with the same patience, in our "Old Western" tavern style hall.</p>
-                <p>We believe BBQ isn't just food; it's an event. It's the wait, the smell of the smoke, and the community around the table. Come sit a spell, grab a bourbon, and let us feed you like family.</p>
-                <p class="handwritten" style="color: var(--primary); font-size: 1.5rem; margin-top: 1rem;">- Terry Foster, Pitmaster</p>
-            </div>
-            <div class="about-img-container reveal">
-                <img src="https://picsum.photos/seed/bbqshop/800/600.jpg" alt="Terry's BBQ Interior" class="about-img">
-            </div>
-        </div>
-    </section>
+    <!-- Catering Section (Interactive Form) -->
+    <section id="catering" class="py-24 bg-background relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-secondary p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+                <!-- Decorative Background Element -->
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary opacity-10 rounded-full blur-3xl"></div>
 
-    <!-- Catering Form -->
-    <section id="catering" class="catering-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Catering <span>Inquiry</span></h2>
-                <p class="section-desc">Bring the smoke to your next event. Weddings, corporate lunches, or backyard blowouts.</p>
-            </div>
+                <h2 class="font-heading text-3xl md:text-4xl text-white mb-2 text-center">CATERING & <span class="text-accent">EVENTS</span></h2>
+                <p class="text-center text-gray-400 mb-10 font-body">Let us bring the smoke to your backyard.</p>
 
-            <div class="form-container reveal">
-                <form id="cateringForm">
-                    <div class="form-group">
-                        <label class="form-label" for="date">Event Date</label>
-                        <input type="date" id="date" class="form-input" required>
-                    </div>
+                <form id="catering-form" onsubmit="handleCateringSubmit(event)">
                     
-                    <div class="form-group">
-                        <label class="form-label" for="guests">Number of Guests</label>
-                        <input type="number" id="guests" class="form-input" placeholder="e.g. 50" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Select Meats (Minimum 2)</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-item"><input type="checkbox" name="meat" value="ribs"> Ribs</label>
-                            <label class="checkbox-item"><input type="checkbox" name="meat" value="brisket"> Brisket</label>
-                            <label class="checkbox-item"><input type="checkbox" name="meat" value="pulledpork"> Pulled Pork</label>
-                            <label class="checkbox-item"><input type="checkbox" name="meat" value="chicken"> Smoked Chicken</label>
+                    <!-- Progress Bar -->
+                    <div class="flex items-center justify-between mb-8 px-4 md:px-12">
+                        <div class="flex flex-col items-center">
+                            <div id="step-indicator-1" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold font-subheading text-sm">1</div>
+                            <span class="text-xs text-gray-500 mt-2 uppercase hidden md:block">Date & Guests</span>
+                        </div>
+                        <div class="flex-1 h-1 bg-gray-700 mx-2 rounded"><div id="progress-line" class="h-1 bg-primary w-0 transition-all duration-300"></div></div>
+                        <div class="flex flex-col items-center">
+                            <div id="step-indicator-2" class="w-8 h-8 rounded-full bg-gray-700 text-gray-400 flex items-center justify-center font-bold font-subheading text-sm">2</div>
+                            <span class="text-xs text-gray-500 mt-2 uppercase hidden md:block">Meats</span>
+                        </div>
+                        <div class="flex-1 h-1 bg-gray-700 mx-2 rounded"></div>
+                        <div class="flex flex-col items-center">
+                            <div id="step-indicator-3" class="w-8 h-8 rounded-full bg-gray-700 text-gray-400 flex items-center justify-center font-bold font-subheading text-sm">3</div>
+                            <span class="text-xs text-gray-500 mt-2 uppercase hidden md:block">Details</span>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="name">Contact Name</label>
-                        <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+                    <!-- Step 1: Date & Guests -->
+                    <div id="step-1" class="step-content space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-subheading uppercase text-gray-400 mb-2">Event Date</label>
+                                <input type="date" required class="w-full bg-background border-b border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-subheading uppercase text-gray-400 mb-2">Guest Count</label>
+                                <input type="number" min="10" placeholder="Min 10 guests" required class="w-full bg-background border-b border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body">
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="button" onclick="nextStep(2)" class="bg-primary hover:bg-orange-700 text-white font-subheading uppercase px-8 py-3 transition-transform hover:translate-x-1">
+                                Next Step <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email Address</label>
-                        <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+                    <!-- Step 2: Meat Selection -->
+                    <div id="step-2" class="step-content hidden space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 p-4 border border-gray-700 rounded hover:border-primary cursor-pointer transition-colors">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-primary bg-background border-gray-600 rounded">
+                                <span class="font-subheading text-white">Brisket ($18/lb)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-4 border border-gray-700 rounded hover:border-primary cursor-pointer transition-colors">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-primary bg-background border-gray-600 rounded">
+                                <span class="font-subheading text-white">Pulled Pork ($16/lb)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-4 border border-gray-700 rounded hover:border-primary cursor-pointer transition-colors">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-primary bg-background border-gray-600 rounded">
+                                <span class="font-subheading text-white">Ribs ($22/rack)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-4 border border-gray-700 rounded hover:border-primary cursor-pointer transition-colors">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-primary bg-background border-gray-600 rounded">
+                                <span class="font-subheading text-white">Chicken ($12/half)</span>
+                            </label>
+                        </div>
+                        <div class="flex justify-between">
+                            <button type="button" onclick="nextStep(1)" class="text-gray-400 hover:text-white font-subheading uppercase transition-colors">
+                                <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                            </button>
+                            <button type="button" onclick="nextStep(3)" class="bg-primary hover:bg-orange-700 text-white font-subheading uppercase px-8 py-3 transition-transform hover:translate-x-1">
+                                Next Step <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="message">Special Requests</label>
-                        <textarea id="message" class="form-textarea" rows="4" placeholder="Vegetarian options? Specific setup times?"></textarea>
+                    <!-- Step 3: Details -->
+                    <div id="step-3" class="step-content hidden space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-subheading uppercase text-gray-400 mb-2">Name</label>
+                                <input type="text" id="c-name" required class="w-full bg-background border-b border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-subheading uppercase text-gray-400 mb-2">Phone</label>
+                                <input type="tel" id="c-phone" required class="w-full bg-background border-b border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-subheading uppercase text-gray-400 mb-2">Special Requests</label>
+                            <textarea rows="3" class="w-full bg-background border-b border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body"></textarea>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <button type="button" onclick="nextStep(2)" class="text-gray-400 hover:text-white font-subheading uppercase transition-colors">
+                                <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                            </button>
+                            <button type="submit" class="bg-accent text-background font-bold font-subheading uppercase px-8 py-3 hover:bg-yellow-400 transition-colors shadow-lg">
+                                Submit Inquiry
+                            </button>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
-                    <p id="form-feedback" style="margin-top: 1rem; display: none; color: var(--accent); text-align: center;">Request sent! We'll be in touch shortly.</p>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">The <span>Hall of Fame</span></h2>
+    <!-- Atmosphere / About -->
+    <section class="py-24 bg-surface relative parallax-section">
+        <div class="absolute inset-0 z-0">
+             <img src="https://picsum.photos/seed/tavern/1920/800.jpg" alt="Tavern Interior" class="w-full h-full object-cover opacity-20 sepia">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <img src="https://picsum.photos/seed/terryowner/600/700.jpg" alt="Terry Foster" class="w-full h-auto rounded-lg shadow-2xl border-4 border-secondary sepia">
             </div>
-            
-            <div class="polaroid-grid">
-                <div class="polaroid reveal">
-                    <div class="quote-icon">“</div>
-                    <p class="quote-text">I drove 3 hours just for the brisket. The smoke ring was perfect and that mustard sauce is something else entirely.</p>
-                    <div class="author">Mike R.</div>
-                    <div class="role">BBQ Enthusiast</div>
-                </div>
-                
-                <div class="polaroid reveal">
-                    <div class="quote-icon">“</div>
-                    <p class="quote-text">Best atmosphere in Kentucky. Feels like an old western saloon. The ribs literally fell off the bone.</p>
-                    <div class="author">Sarah L.</div>
-                    <div class="role">Local Food Blogger</div>
-                </div>
-                
-                <div class="polaroid reveal">
-                    <div class="quote-icon">“</div>
-                    <p class="quote-text">We used Terry's for our wedding catering. Guests are still talking about the pork shoulder three months later.</p>
-                    <div class="author">James T.</div>
-                    <div class="role">Happy Groom</div>
+            <div class="w-full md:w-1/2 space-y-6">
+                <span class="text-primary font-accent text-lg">THE PITMASTER</span>
+                <h2 class="font-heading text-4xl text-white">TERRY FOSTER</h2>
+                <div class="w-20 h-1 bg-accent"></div>
+                <p class="text-gray-300 font-body leading-relaxed">
+                    "I started smoking meat in the backyard of my Louisville home in '85. Folks kept knocking on the door asking what smelled so good. Thirty years later, we're still doing it the same way—low heat, good wood, and plenty of patience. We don't use gas, and we don't cut corners. If it takes 14 hours to get right, we let it go 14 hours."
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-4">
+                    <div class="text-center">
+                        <span class="block text-3xl font-heading text-primary">30+</span>
+                        <span class="text-xs text-gray-500 uppercase font-subheading">Years</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-heading text-primary">14</span>
+                        <span class="text-xs text-gray-500 uppercase font-subheading">Hour Smoke</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-heading text-primary">100%</span>
+                        <span class="text-xs text-gray-500 uppercase font-subheading">Hickory</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="#" class="logo" style="display:block; margin-bottom: 1rem;">Terry's <span>BBQ</span></a>
-                    <p>Low & Slow since 1985.<br>Authentic Kentucky Smokehouse.</p>
+    <footer id="contact" class="bg-secondary border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-primary text-xl"></i>
+                        <span class="font-heading text-2xl text-white">TERRY'S <span class="text-primary">BBQ</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm font-body leading-relaxed">
+                        Authentic Kentucky BBQ smoked low and slow. Come taste the tradition at our Louisville tavern or book us for your next event.
+                    </p>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#meat-locker">Menu</a></li>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#catering">Catering</a></li>
-                        <li><a href="#">Gift Cards</a></li>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-heading text-white text-lg mb-4">EXPLORE</h4>
+                    <ul class="space-y-2 text-sm font-subheading text-gray-400 uppercase">
+                        <li><a href="#menu" class="hover:text-primary transition-colors">Full Menu</a></li>
+                        <li><a href="#process" class="hover:text-primary transition-colors">The Process</a></li>
+                        <li><a href="#catering" class="hover:text-primary transition-colors">Catering Info</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Gift Cards</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Visit Us</h4>
-                    <p>4521 Bardstown Rd<br>Louisville, KY 40218</p>
-                    <br>
-                    <p>Mon-Thu: 11am - 9pm<br>Fri-Sat: 11am - 10pm<br>Sun: 12pm - 8pm</p>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-heading text-white text-lg mb-4">FIND US</h4>
+                    <ul class="space-y-4 text-sm text-gray-300 font-body">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-primary"></i>
+                            <span>4521 Westheimer Rd,<br>Louisville, KY 40207</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-primary"></i>
+                            <a href="tel:+15025551234" class="hover:text-white transition-colors">(502) 555-1234</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-primary"></i>
+                            <a href="mailto:hello@terrysbbq.com" class="hover:text-white transition-colors">hello@terrysbbq.com</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <p>(502) 555-0198</p>
-                    <p>hello@terrysbbq.com</p>
-                    <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-                        <a href="#" aria-label="Facebook">FB</a>
-                        <a href="#" aria-label="Instagram">IG</a>
-                        <a href="#" aria-label="Twitter">TW</a>
-                    </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="font-heading text-white text-lg mb-4">HOURS</h4>
+                    <ul class="space-y-2 text-sm font-body text-gray-300">
+                        <li class="flex justify-between border-b border-gray-700 pb-2">
+                            <span>Mon - Thu</span>
+                            <span>11am - 9pm</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-700 pb-2">
+                            <span>Fri - Sat</span>
+                            <span>11am - 10pm</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>12pm - 8pm</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2023 Terry's BBQ. All rights reserved.
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-xs font-body">
+                    &copy; 2023 Terry's BBQ. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fa-brands fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Sticky CTA -->
-    <div class="mobile-sticky-cta">
-        <a href="tel:5025550198" style="color: white; font-weight: bold;">Call Now</a>
-        <a href="#catering" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Order</a>
-    </div>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
 
-    <!-- Scripts -->
+    <!-- Logic Script -->
     <script>
-        // --- SMOKE PARTICLE SYSTEM ---
-        const canvas = document.getElementById('smoke-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
+        /**
+         * --------------------------------------------------------------------------
+         * UTILITY FUNCTIONS
+         * --------------------------------------------------------------------------
+         */
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            let icon = type === 'success' ? '<i class="fa-solid fa-check-circle text-green-400 text-xl"></i>' : 
+                       '<i class="fa-solid fa-info-circle text-primary text-xl"></i>';
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = height + Math.random() * 100;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = -Math.random() * 1 - 0.5;
-                this.size = Math.random() * 20 + 10;
-                this.opacity = 0;
-                this.life = Math.random() * 100 + 100;
-                this.maxOpacity = Math.random() * 0.2 + 0.1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.life--;
-
-                // Fade in then out
-                if (this.life > 50) {
-                    if (this.opacity < this.maxOpacity) this.opacity += 0.005;
-                } else {
-                    this.opacity -= 0.005;
-                }
-
-                if (this.life <= 0 || this.opacity <= 0) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                // Create a radial gradient for soft smoke look
-                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-                gradient.addColorStop(0, `rgba(200, 200, 200, ${this.opacity})`);
-                gradient.addColorStop(1, `rgba(200, 200, 200, 0)`);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-            }
+            toast.innerHTML = `
+                <div class="flex items-center gap-3">
+                    ${icon}
+                    <span class="font-subheading uppercase tracking-wide text-sm">${message}</span>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Auto remove
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
 
-        function initParticles() {
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        // --- UI INTERACTIONS ---
-
-        // Header Scroll Effect
-        const header = document.getElementById('header');
+        /**
+         * --------------------------------------------------------------------------
+         * NAVIGATION SCROLL EFFECT
+         * --------------------------------------------------------------------------
+         */
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                navbar.classList.add('bg-secondary/95', 'backdrop-blur-sm', 'shadow-lg', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-4');
             } else {
-                header.classList.remove('scrolled');
+                navbar.classList.remove('bg-secondary/95', 'backdrop-blur-sm', 'shadow-lg', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-4');
             }
         });
 
         // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        let isMenuOpen = false;
-
-        menuToggle.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            mobileNav.classList.toggle('active');
-            // Animate hamburger
-            const spans = menuToggle.querySelectorAll('span');
-            if (isMenuOpen) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when clicking a link
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileNav.classList.remove('active');
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
-        });
-
-        // Scroll Reveal Animation (Intersection Observer)
-        const revealElements = document.querySelectorAll('.reveal');
+        /**
+         * --------------------------------------------------------------------------
+         * 2D ANIMATION SHOWCASE: SMOKER SIMULATION
+         * --------------------------------------------------------------------------
+         */
+        const canvas = document.getElementById('smokerCanvas');
+        const ctx = canvas.getContext('2d');
         
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.15
-        });
+        // State
+        let isAnimating = true;
+        let particles = [];
+        let meatColorProgress = 0; // 0 (raw) to 1 (cooked)
+        let internalTemp = 60; // Starting raw temp
+        let ambientTemp = 225; // Controlled by slider
+        let damperOpen = 0.5; // Controlled by slider
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let fps = 0;
 
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Form Submission Handling
-        const form = document.getElementById('cateringForm');
-        const feedback = document.getElementById('form-feedback');
-        const submitBtn = form.querySelector('button[type="submit"]');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Basic Checkbox Validation
-            const checkboxes = document.querySelectorAll('input[name="meat"]:checked');
-            if (checkboxes.length < 2) {
-                alert("Please select at least 2 meat options.");
-                return;
+        // Smoke Particle Class
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 2;
+                this.speedY = Math.random() * 1 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.decay = Math.random() * 0.005 + 0.002;
             }
 
-            // Simulate Loading
-            const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Smoking your request...";
-            submitBtn.disabled = true;
+            update() {
+                this.y -= this.speedY * (1 + (ambientTemp/100)); // Higher heat = faster smoke
+                this.x += this.speedX + (Math.sin(this.y * 0.05) * 0.2); // Wind effect
+                this.opacity -= this.decay;
+                
+                if (this.opacity < 0) this.opacity = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(200, 200, 200, ${this.opacity * damperOpen})`; // Damper affects visibility
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Draw Smoker Body
+        function drawSmokerBody() {
+            // Main Drum
+            ctx.fillStyle = '#3E2723';
+            ctx.fillRect(100, 150, 400, 150);
+            ctx.strokeStyle = '#1E1E1E';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(100, 150, 400, 150);
+
+            // Firebox (offset bottom right)
+            ctx.fillStyle = '#251614';
+            ctx.fillRect(450, 200, 100, 100);
+            ctx.strokeRect(450, 200, 100, 100);
+
+            // Chimney
+            ctx.fillStyle = '#5D4037';
+            ctx.fillRect(350, 80, 40, 70);
+            
+            // Legs
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(120, 300, 20, 50);
+            ctx.fillRect(460, 300, 20, 50);
+            ctx.fillRect(470, 400, 20, 50); // Firebox leg
+        }
+
+        // Draw Fire
+        function drawFire() {
+            const intensity = ambientTemp / 350; // 0 to 1
+            const flicker = Math.random() * 0.2;
+            
+            // Only draw if temp is decent
+            if(ambientTemp > 150) {
+                const gradient = ctx.createRadialGradient(500, 280, 5, 500, 280, 30 + (intensity * 20));
+                gradient.addColorStop(0, `rgba(255, 255, 0, ${0.5 + flicker})`);
+                gradient.addColorStop(0.5, `rgba(255, 69, 0, ${0.6 + flicker})`);
+                gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(500, 280, 40 * intensity, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Draw Meat
+        function drawMeat() {
+            // Meat representation (Brisket)
+            // Color interpolation from Pink (#E57373) to Dark Brown (#3E2723) based on meatColorProgress
+            const r = 229 - (229 - 62) * meatColorProgress;
+            const g = 115 - (115 - 39) * meatColorProgress;
+            const b = 115 - (115 - 35) * meatColorProgress;
+            
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            // Draw a rounded rect
+            ctx.beginPath();
+            ctx.roundRect(200, 240, 200, 40, 10);
+            ctx.fill();
+            
+            // Fat Cap
+            ctx.fillStyle = `rgba(255,255,255,${0.8 - meatColorProgress * 0.5})`;
+            ctx.beginPath();
+            ctx.roundRect(200, 245, 200, 10, 5);
+            ctx.fill();
+
+            // Smoke Ring (visual approximation)
+            if(meatColorProgress > 0.3) {
+                ctx.strokeStyle = '#D32F2F';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(210, 260, 10, 0, Math.PI*2);
+                ctx.stroke();
+            }
+        }
+
+        // Main Animation Loop
+        function animate() {
+            // FPS Calculation
+            const now = performance.now();
+            frameCount++;
+            if (now - lastTime >= 1000) {
+                document.getElementById('fps-counter').innerText = `${frameCount} FPS`;
+                frameCount = 0;
+                lastTime = now;
+            }
+
+            if (!isAnimating) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Draw Static Elements
+            drawSmokerBody();
+            drawFire();
+            drawMeat();
+
+            // 2. Generate Smoke Particles
+            // More heat = more particles. More damper = more particles.
+            const spawnRate = (ambientTemp / 100) * damperOpen;
+            if (Math.random() < spawnRate && damperOpen > 0.1) {
+                particles.push(new Particle(370, 80)); // Chimney top
+            }
+
+            // 3. Update & Draw Particles
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].opacity <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // 4. Logic Simulation
+            // Meat cooks towards ambient temp
+            if (meatColorProgress < 1) {
+                const cookRate = (ambientTemp / 5000); 
+                meatColorProgress += cookRate;
+            }
+            
+            // Update Text Displays
+            document.getElementById('temp-display').innerText = `${ambientTemp}°F`;
+            document.getElementById('damper-display').innerText = `${Math.round(damperOpen * 100)}%`;
+            
+            // Update Status Badge
+            const badge = document.getElementById('status-badge');
+            if(ambientTemp < 180) {
+                badge.innerText = "Status: Too Cold";
+                badge.className = "bg-blue-900 text-blue-200 text-xs px-2 py-1 rounded uppercase font-bold";
+            } else if (ambientTemp > 260) {
+                badge.innerText = "Status: Burning!";
+                badge.className = "bg-red-900 text-red-200 text-xs px-2 py-1 rounded uppercase font-bold";
+            } else {
+                badge.innerText = "Status: Sweet Spot";
+                badge.className = "bg-green-900 text-green-200 text-xs px-2 py-1 rounded uppercase font-bold";
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Animation Controls
+        document.getElementById('temp-slider').addEventListener('input', (e) => {
+            ambientTemp = parseInt(e.target.value);
+        });
+
+        document.getElementById('damper-slider').addEventListener('input', (e) => {
+            damperOpen = parseInt(e.target.value) / 100;
+        });
+
+        document.getElementById('toggle-anim-btn').addEventListener('click', () => {
+            isAnimating = !isAnimating;
+            const btn = document.getElementById('toggle-anim-btn');
+            if(isAnimating) {
+                btn.innerHTML = '<i class="fa-solid fa-pause mr-2"></i> Pause Simulation';
+                animate();
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play mr-2"></i> Resume Simulation';
+            }
+        });
+
+        document.getElementById('reset-anim-btn').addEventListener('click', () => {
+            meatColorProgress = 0;
+            particles = [];
+            ambientTemp = 225;
+            damperOpen = 0.5;
+            document.getElementById('temp-slider').value = 225;
+            document.getElementById('damper-slider').value = 50;
+            if(!isAnimating) {
+                isAnimating = true;
+                animate();
+            }
+            showToast('Simulation Reset', 'info');
+        });
+
+        // Start Animation
+        animate();
+
+
+        /**
+         * --------------------------------------------------------------------------
+         * CATERING FORM WIZARD LOGIC
+         * --------------------------------------------------------------------------
+         */
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function nextStep(step) {
+            // Simple validation for step 1
+            if (currentStep === 1 && step === 2) {
+                const date = document.querySelector('#step-1 input[type="date"]');
+                const guests = document.querySelector('#step-1 input[type="number"]');
+                if (!date.value || !guests.value) {
+                    showToast('Please fill in all fields', 'info');
+                    return;
+                }
+            }
+
+            // Hide current
+            document.getElementById(`step-${currentStep}`).classList.add('hidden');
+            
+            // Show next
+            currentStep = step;
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+
+            // Update Indicators
+            updateIndicators();
+        }
+
+        function updateIndicators() {
+            const progressLine = document.getElementById('progress-line');
+            
+            for(let i=1; i<=totalSteps; i++) {
+                const ind = document.getElementById(`step-indicator-${i}`);
+                if(i <= currentStep) {
+                    ind.classList.remove('bg-gray-700', 'text-gray-400');
+                    ind.classList.add('bg-primary', 'text-white');
+                } else {
+                    ind.classList.add('bg-gray-700', 'text-gray-400');
+                    ind.classList.remove('bg-primary', 'text-white');
+                }
+            }
+
+            // Update Progress Line width
+            const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressLine.style.width = `${percent}%`;
+        }
+
+        function handleCateringSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('c-name').value;
+            
+            // Simulate API call
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Processing...";
+            btn.disabled = true;
 
             setTimeout(() => {
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-                form.reset();
-                feedback.style.display = 'block';
-                setTimeout(() => {
-                    feedback.style.display = 'none';
-                }, 5000);
+                btn.innerText = originalText;
+                btn.disabled = false;
+                showToast(`Thanks ${name}! We've received your inquiry.`, 'success');
+                
+                // Reset form
+                e.target.reset();
+                nextStep(1);
             }, 1500);
+        }
+
+        /**
+         * --------------------------------------------------------------------------
+         * SCROLL OBSERVER FOR FADE IN ANIMATIONS
+         * --------------------------------------------------------------------------
+         */
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply observer to cards and sections
+        document.querySelectorAll('article, .step-content, #process .grid > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
         });
+
     </script>
 </body>
 </html>
