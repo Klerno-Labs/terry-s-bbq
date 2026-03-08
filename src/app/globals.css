@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 45, 36, 30;
+    --background-start-rgb: 245, 241, 232;
+    --background-end-rgb: 245, 241, 232;
+  }
+
+  body {
+    @apply bg-background text-text-main font-body antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-primary;
+  }
+
+  h1 { @apply text-4xl sm:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl sm:text-4xl; }
+  h3 { @apply text-2xl; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .clip-path-polygon {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+}
+
+/* Custom Scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F1E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #3E2723;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D84315;
+}
