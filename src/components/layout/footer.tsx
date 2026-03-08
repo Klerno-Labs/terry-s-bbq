@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, ArrowUp } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 

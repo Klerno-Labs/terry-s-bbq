@@ -4,7 +4,7 @@ import { menuItems } from "@/lib/data";
 import { images } from "@/config/images";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
 export function FeaturedMenu() {

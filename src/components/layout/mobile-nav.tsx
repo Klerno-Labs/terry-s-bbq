@@ -2,7 +2,7 @@
 
 import { X, MapPin, Phone, Clock, Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
