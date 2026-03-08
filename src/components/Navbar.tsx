@@ -1,14 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { BUSINESS_INFO } from "@/lib/data";
 
-export function Navbar() {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,132 +19,97 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [pathname]);
+
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/menu", label: "Menu" },
-    { href: "/about", label: "Our Story" },
-    { href: "/catering", label: "Catering" },
+    { name: "Home", href: "/" },
+    { name: "Menu", href: "#menu" },
+    { name: "Our Story", href: "#story" },
+    { name: "Catering", href: "/catering" },
   ];
 
   return (
-    <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-background-dark/95 backdrop-blur-sm py-2 shadow-header border-b border-white/10"
-            : "bg-transparent py-4"
-        )}
-      >
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="font-heading text-2xl md:text-3xl text-accent tracking-wider hover:text-white transition-colors"
+    <header
+      className={cn(
+        "fixed w-full top-0 z-50 transition-all duration-300 border-b",
+        isScrolled
+          ? "bg-darkSurface text-white py-2 shadow-lg border-secondary/30"
+          : "bg-transparent text-white py-4 border-transparent"
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        {/* Logo */}
+        <Link 
+          href="/" 
+          className="font-heading text-2xl tracking-wider text-accent hover:text-white transition-colors"
+        >
+          TERRY&apos;S BBQ
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="font-body font-medium hover:text-accent transition-colors relative group"
+            >
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
+            </Link>
+          ))}
+          <Link 
+            href="#order" 
+            className="bg-primary hover:bg-primary-hover text-white px-6 py-2 font-bold uppercase tracking-wide transition-colors rounded-sm shadow-md"
           >
-            Terry&apos;s BBQ
+            Order Now
           </Link>
+        </nav>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body text-white hover:text-accent transition-colors font-medium uppercase tracking-wide text-sm"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <button
-              className="relative text-white hover:text-accent transition-colors"
-              aria-label="View Cart"
-            >
-              <ShoppingBag className="w-6 h-6" />
-              <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                0
-              </span>
-            </button>
-            
-            {/* Order Button Desktop */}
-            <Link
-              href="/menu"
-              className="hidden md:block bg-primary hover:bg-primary-dark text-white px-6 py-2 font-heading uppercase tracking-wide transition-colors rounded-sm border-b-2 border-primary-dark"
-            >
-              Order Now
-            </Link>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              className="md:hidden text-white"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu className="w-8 h-8" />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu Drawer */}
-      <div
-        className={cn(
-          "fixed inset-0 z-[60] transform transition-transform duration-300 ease-in-out md:hidden",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        {/* Overlay */}
-        <div
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-
-        {/* Content */}
-        <div className="absolute right-0 top-0 bottom-0 w-3/4 max-w-sm bg-secondary text-white p-8 flex flex-col shadow-2xl">
-          <div className="flex justify-end mb-8">
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-white hover:text-accent transition-colors"
-              aria-label="Close menu"
-            >
-              <X className="w-8 h-8" />
-            </button>
-          </div>
-
-          <nav className="flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-heading text-2xl text-accent hover:text-white transition-colors border-b border-white/10 pb-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="mt-auto space-y-4">
-            <Link
-              href="/menu"
-              className="block w-full bg-primary text-center text-white py-4 font-heading uppercase tracking-wide rounded-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Order Pickup
-            </Link>
-            <a
-              href={`tel:${BUSINESS_INFO.phone}`}
-              className="block w-full border-2 border-accent text-center text-accent py-3 font-heading uppercase tracking-wide rounded-sm hover:bg-accent hover:text-secondary transition-colors"
-            >
-              Call {BUSINESS_INFO.phone}
-            </a>
-          </div>
+        {/* Mobile Controls */}
+        <div className="flex items-center md:hidden space-x-4">
+          <button 
+            aria-label="View cart"
+            className="text-white hover:text-accent transition-colors"
+          >
+            <ShoppingCart className="w-6 h-6" />
+          </button>
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+            className="text-white hover:text-accent transition-colors"
+          >
+            {isMobileOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Mobile Drawer */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 md:hidden bg-secondary/95 backdrop-blur-sm transform transition-transform duration-300 ease-in-out flex flex-col justify-center items-center space-y-8",
+          isMobileOpen ? "translate-x-0" : "translate-x-full"
+        )}
+      >
+        {navLinks.map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className="font-heading text-3xl text-white hover:text-accent transition-colors"
+          >
+            {link.name}
+          </Link>
+        ))}
+        <Link 
+          href="#order" 
+          className="bg-primary text-white px-8 py-3 font-heading text-xl rounded-sm"
+        >
+          Order Pickup
+        </Link>
+      </div>
+    </header>
   );
 }

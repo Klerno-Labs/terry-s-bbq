@@ -11,53 +11,39 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: "#D84315", // Burnt Orange
-          dark: "#BF360C",
-          light: "#FF6F40",
+          hover: "#BF360C",
         },
-        secondary: {
-          DEFAULT: "#3E2723", // Deep Leather Brown
-          light: "#5D4037",
-        },
-        accent: {
-          DEFAULT: "#FFB74D", // Golden Ember
-          dark: "#FFCA28",
-        },
-        background: {
-          DEFAULT: "#F5F1E8", // Aged Parchment
-          dark: "#212121",    // Charcoal Black
-        },
-        surface: "#FFFFFF",
-        text: {
-          main: "#2D241E",    // Dark Coffee
-          muted: "#6D5D56",   // Wood Ash
-        },
+        secondary: "#3E2723", // Deep Leather Brown
+        accent: "#FFB74D", // Golden Ember
+        bg: "#F5F1E8", // Aged Parchment
+        darkSurface: "#212121", // Charcoal
+        textMain: "#2D241E", // Dark Coffee
+        textMuted: "#6D5D56", // Wood Ash
       },
       fontFamily: {
         heading: ["var(--font-rye)", "serif"],
         body: ["var(--font-roboto)", "sans-serif"],
-        accent: ["var(--font-marker)", "cursive"],
+        accent: ["var(--font-permanent-marker)", "cursive"],
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
-      boxShadow: {
-        "header": "0 4px 20px rgba(0,0,0,0.4)",
-        "card": "0 4px 6px -1px rgba(62, 39, 35, 0.1), 0 2px 4px -1px rgba(62, 39, 35, 0.06)",
-        "hover": "0 20px 25px -5px rgba(62, 39, 35, 0.1), 0 10px 10px -5px rgba(62, 39, 35, 0.04)",
-      },
-      animation: {
-        "fade-in-up": "fadeInUp 0.7s ease-out forwards",
-        "bounce-slow": "bounce 3s infinite",
+        'texture-paper': "url('https://www.transparenttextures.com/patterns/aged-paper.png')",
       },
       keyframes: {
-        fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      animation: {
+        'fade-up': 'fadeUp 0.8s ease-out forwards',
+        'scroll': 'scroll 30s linear infinite',
       },
     },
   },
   plugins: [],
 };
-
 export default config;
