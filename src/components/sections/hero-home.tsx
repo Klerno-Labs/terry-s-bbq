@@ -1,10 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { images } from "@/config/images";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { images } from "@/config/images";
 
 export function HeroHome() {
   const scrollToMenu = () => {
@@ -58,5 +59,3 @@ export function HeroHome() {
     </section>
   );
 }
-
-import Link from "next/link";

@@ -5,7 +5,6 @@ import { images } from "@/config/images";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
