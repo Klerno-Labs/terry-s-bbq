@@ -1,88 +1,124 @@
-export const menuItems = [
+// Business Contact Info
+export const BUSINESS_INFO = {
+  name: "Terry's BBQ",
+  phone: "(512) 555-0198",
+  email: "hello@terrysbbq.com",
+  address: "4521 Westheimer Rd, Suite 200, Houston, TX 77027",
+  hours: {
+    weekdays: "Mon - Sat: 11:00 AM - 9:00 PM",
+    sunday: "Sunday: 12:00 PM - 8:00 PM",
+  },
+  socials: {
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    tiktok: "https://tiktok.com",
+  },
+};
+
+// Menu Data
+export const MENU_ITEMS = [
   {
-    id: "1",
-    name: "Signature Beef Brisket",
-    description: "Prime brisket smoked for 14 hours over post oak wood. Served with our house-made pickles and white bread.",
-    price: 18,
-    category: "meats",
-    image: "menu-1",
-    tags: ["House Fave", "Gluten Free"],
+    id: 1,
+    name: "The Pitmaster's Brisket",
+    description: "Prime Angus brisket, smoked 14 hours over oak wood. Served with pickles and white bread.",
+    price: 24.99,
+    image: "menu-featured",
+    isFeatured: true,
+    tag: "House Favorite",
   },
   {
-    id: "2",
-    name: "St. Louis Style Ribs",
-    description: "Dry-rubbed pork ribs, slow smoked until fall-off-the-bone tender. Painted with our Gold Dust Mustard Sauce.",
-    price: 22,
-    category: "meats",
-    image: "menu-2",
-    tags: ["Spicy"],
+    id: 2,
+    name: "St. Louis Ribs",
+    description: "Half rack of pork ribs, dry-rubbed and finished with our signature mustard glaze.",
+    price: 22.99,
+    image: "menu-ribs",
+    isFeatured: false,
   },
   {
-    id: "3",
-    name: "Kentucky Pulled Pork",
-    description: "Boston butt smoked low and slow, hand-pulled, and tossed in a light vinegar sauce. Served on a toasted brioche bun.",
-    price: 14,
-    category: "meats",
-    image: "menu-3",
-    tags: ["Best Seller"],
+    id: 3,
+    name: "Smoked Half Chicken",
+    description: "Juicy half chicken smoked to perfection, crispy skin and tender meat.",
+    price: 16.99,
+    image: "menu-chicken",
+    isFeatured: false,
+  },
+  {
+    id: 4,
+    name: "Pulled Pork Sandwich",
+    description: "Slow-smoked pork shoulder, piled high on a brioche bun with coleslaw.",
+    price: 14.99,
+    image: "menu-ribs", // Reusing for demo
+    isFeatured: false,
+  },
+  {
+    id: 5,
+    name: "Two Meat Plate",
+    description: "Choose any two meats and two sides. The best way to sample our smokehouse.",
+    price: 26.99,
+    image: "menu-featured", // Reusing for demo
+    isFeatured: true,
+    tag: "Best Value",
+  },
+  {
+    id: 6,
+    name: "Loaded Potato Salad",
+    description: "Creamy potato salad loaded with bacon, cheddar, and chives.",
+    price: 4.99,
+    image: "gallery-3",
+    isFeatured: false,
   },
 ];
 
-export const reviews = [
+// Testimonials
+export const TESTIMONIALS = [
   {
-    id: "1",
+    id: 1,
     name: "Maria L.",
-    role: "Local Foodie",
-    content: "I've been searching for authentic BBQ in Kentucky for years. Terry's is it. The mustard sauce is a game changer—sweet, tangy, and just a little kick. The brisket melts in your mouth.",
+    role: "Local Regular",
+    text: "Hands down the best brisket in Texas. The mustard sauce is something else entirely. Worth the drive from Austin!",
     rating: 5,
   },
   {
-    id: "2",
+    id: 2,
     name: "James T.",
-    role: "Regular Customer",
-    content: "You can taste the tradition in every bite. The atmosphere feels like an old western tavern, and the staff treats you like family. Best ribs in the Bluegrass, hands down.",
-    rating: 5,
-  },
-  {
-    id: "3",
-    name: "Sarah Jenkins",
     role: "Catering Client",
-    content: "Terry's catered our company reunion of 150 people. They handled everything flawlessly. The 'Feeding a Posse' package was a hit, and the setup looked professional and rustic.",
+    text: "Terry's handled our company picnic for 200 people. Seamless service, incredible food. The ribs disappeared in minutes.",
     rating: 5,
   },
   {
-    id: "4",
-    name: "Mike R.",
-    role: "Truck Driver",
-    content: "I stop here every time I pass through Lexington. It's the highlight of my route. Portions are huge, prices are fair, and that mac and cheese is addictive.",
+    id: 3,
+    name: "Sarah K.",
+    role: "Food Blogger",
+    text: "The atmosphere feels like a true old Western tavern. I love the dark wood and the smell of hickory when you walk in.",
     rating: 5,
   },
 ];
 
-export const packages = [
+// Catering Packages
+export const CATERING_PACKAGES = [
   {
-    id: "1",
+    id: 1,
     name: "The Crew",
-    description: "Perfect for a small team lunch or family dinner.",
-    price: 150,
+    description: "Perfect for small office lunches or family gatherings.",
+    price: "$150",
     feeds: "10-12 People",
-    includes: ["2 lbs Pulled Pork", "2 lb Brisket", "1 Gallon Beans", "1 Gallon Slaw", "Buns & Sauce", "Paper Goods"],
+    includes: ["Choice of 1 Meat", "2 Sides", "Buns & Sauce", "Paper Goods"],
   },
   {
-    id: "2",
+    id: 2,
     name: "The Party",
-    description: "Our most popular package for gatherings and birthdays.",
-    price: 350,
+    description: "Our most popular package for birthdays and reunions.",
+    price: "$350",
     feeds: "25-30 People",
-    includes: ["4 lbs Pulled Pork", "4 lbs Brisket", "2 Racks Ribs", "2 Gallons Beans", "2 Gallon Slaw", "Cornbread", "Buns & Sauce", "Paper Goods"],
+    includes: ["Choice of 2 Meats", "3 Sides", "Buns & Sauce", "Paper Goods"],
     featured: true,
   },
   {
-    id: "3",
+    id: 3,
     name: "The Feast",
-    description: "The full spread for weddings and large corporate events.",
-    price: 750,
-    feeds: "60-70 People",
-    includes: ["8 lbs Pulled Pork", "8 lbs Brisket", "5 Racks Ribs", "1 Smoked Chicken", "5 Gallons Beans", "5 Gallons Slaw", "Cornbread Muffins", "Buns & Sauce", "Full Service Setup"],
+    description: "The full spread. Nothing says hospitality like this.",
+    price: "$650",
+    feeds: "50-60 People",
+    includes: ["Choice of 3 Meats", "4 Sides", "Buns & Sauce", "Paper Goods", "Dessert"],
   },
 ];

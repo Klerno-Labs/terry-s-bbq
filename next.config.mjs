@@ -3,10 +3,16 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: false, // Strict linting enabled
+  },
+  typescript: {
+    ignoreBuildErrors: false, // Strict TypeScript enabled
   },
 };
 
