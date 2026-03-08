@@ -9,11 +9,6 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
-export const metadata = {
-  title: "Catering",
-  description: "Let Terry's BBQ cater your next event. From small gatherings to large weddings.",
-};
-
 export default function CateringPage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 

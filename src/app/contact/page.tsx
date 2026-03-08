@@ -22,11 +22,6 @@ const contactSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
-export const metadata = {
-  title: "Contact",
-  description: "Find Terry's BBQ in Lexington, KY. Hours, location, and contact info.",
-};
-
 export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
