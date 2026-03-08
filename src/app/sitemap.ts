@@ -1,32 +1,30 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://terrysbbq.com";
-
   return [
     {
-      url: baseUrl,
+      url: "https://terrysbbq.com",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "yearly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/menu`,
+      url: "https://terrysbbq.com/menu",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/about`,
+      url: "https://terrysbbq.com/about",
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/catering`,
+      url: "https://terrysbbq.com/contact",
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
   ];
 }

@@ -9,41 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#D84315", // Burnt Orange
-          hover: "#BF360C",
-        },
-        secondary: "#3E2723", // Deep Leather Brown
-        accent: "#FFB74D", // Golden Ember
-        bg: "#F5F1E8", // Aged Parchment
-        darkSurface: "#212121", // Charcoal
-        textMain: "#2D241E", // Dark Coffee
-        textMuted: "#6D5D56", // Wood Ash
+        primary: "#BF360C", // Deep Burnt Orange
+        "primary-dark": "#8B2500",
+        secondary: "#3E2723", // Dark Coffee Bean / Leather
+        accent: "#FFAB00", // Golden Amber
+        background: "#121212", // Rich Charcoal
+        surface: "#1E1E1E", // Lighter Charcoal
+        text: "#F5F5F5", // Off-White
+        muted: "#9E9E9E", // Cool Grey
       },
       fontFamily: {
-        heading: ["var(--font-rye)", "serif"],
-        body: ["var(--font-roboto)", "sans-serif"],
-        accent: ["var(--font-permanent-marker)", "cursive"],
+        rye: ["var(--font-rye)", "serif"],
+        oswald: ["var(--font-oswald)", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
+        marker: ["var(--font-marker)", "cursive"],
       },
       backgroundImage: {
-        'texture-paper': "url('https://www.transparenttextures.com/patterns/aged-paper.png')",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "hero-overlay": "linear-gradient(to bottom, rgba(18,18,18,0.3), rgba(18,18,18,1))",
+      },
+      animation: {
+        "fade-up": "fadeUp 0.8s ease-out forwards",
+        "slow-zoom": "slowZoom 20s ease-in-out infinite alternate",
+        "smoke": "smoke 4s ease-in-out infinite",
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          "0%": { opacity: 0, transform: "translateY(40px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
         },
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        }
-      },
-      animation: {
-        'fade-up': 'fadeUp 0.8s ease-out forwards',
-        'scroll': 'scroll 30s linear infinite',
+        slowZoom: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.1)" },
+        },
+        smoke: {
+          "0%": { transform: "translateY(0) scale(1)", opacity: 0.1 },
+          "50%": { transform: "translateY(-20px) scale(1.1)", opacity: 0.3 },
+          "100%": { transform: "translateY(0) scale(1)", opacity: 0.1 },
+        },
       },
     },
   },
   plugins: [],
 };
+
 export default config;

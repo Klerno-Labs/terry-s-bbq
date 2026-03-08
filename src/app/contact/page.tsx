@@ -1,234 +1,254 @@
 "use client";
 
-import { siteConfig } from "@/config/site";
-import { images } from "@/config/images";
-import Image from "next/image";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { Metadata } from "next";
+import { MapPin, Phone, Clock, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-  _gotcha: z.string(), // Honeypot
-});
-
-type ContactFormValues = z.infer<typeof contactSchema>;
+// Since this is a client component for the form, we define metadata in a separate file usually
+// but for Next.js App router, we can export it here if needed, though typically metadata is static.
+// We will handle form logic here.
 
 export default function ContactPage() {
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema),
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    guests: "",
+    message: "",
+    _gotcha: "", // Honeypot
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
-    // Honeypot check
-    if (data._gotcha) {
-      console.log("Bot detected");
-      return;
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData._gotcha) return; // Bot detected
 
-    setIsSubmitting(true);
+    setFormState("loading");
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
       if (res.ok) {
-        setIsSuccess(true);
-        reset();
+        setFormState("success");
       } else {
-        alert("Something went wrong. Please try again.");
+        setFormState("error");
       }
-    } catch (error) {
-      alert("Network error. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+    } catch (err) {
+      setFormState("error");
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
-    <main className="pt-24 min-h-screen bg-neutral-bg">
-      {/* Header Image */}
-      <div className="relative h-[300px] mb-12">
-        <Image
-          src={images["contact"].src}
-          alt="Location"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-secondary/60"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Reveal>
-            <h1 className="text-5xl font-serif text-white">Come See Us</h1>
-          </Reveal>
+    <main className="pt-32 pb-24 bg-background min-h-screen">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h1 className="font-rye text-5xl text-primary mb-4">Get in Touch</h1>
+          <p className="font-roboto text-muted max-w-2xl mx-auto">
+            Planning a big event or just craving a rack of ribs? Hit us up.
+          </p>
         </div>
-      </div>
 
-      <div className="container mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-8">
-            <Reveal>
-              <h2 className="text-3xl font-serif text-secondary mb-6">Visit The Pit</h2>
-            </Reveal>
-
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 space-y-6">
-              <Reveal delay={0.1}>
+          <div className="space-y-12">
+            <section>
+              <h2 className="font-oswald text-2xl text-white uppercase tracking-widest mb-6 border-b border-white/10 pb-2">
+                Catering Inquiries
+              </h2>
+              <p className="font-roboto text-muted mb-6">
+                We cater weddings, corporate events, and backyard parties.
+                Minimum order of 20 people for catering services.
+              </p>
+              <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-full text-secondary">
-                    <MapPin className="w-6 h-6" />
-                  </div>
+                  <Phone className="w-6 h-6 text-primary shrink-0" />
                   <div>
-                    <h3 className="font-bold text-secondary text-lg">Location</h3>
-                    <p className="text-gray-600 mt-1">{siteConfig.contact.address}</p>
-                    <p className="text-sm text-primary mt-1 hover:underline cursor-pointer">Get Directions</p>
-                  </div>
-                </div>
-              </Reveal>
-
-              <div className="border-t border-gray-100"></div>
-
-              <Reveal delay={0.2}>
-                <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-full text-secondary">
-                    <Clock className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-secondary text-lg">Hours</h3>
-                    <div className="text-gray-600 mt-1 space-y-1">
-                      {siteConfig.hours.map((item, idx) => (
-                        <div key={idx} className="flex justify-between w-64">
-                          <span>{item.day}</span>
-                          <span>{item.time}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-
-              <div className="border-t border-gray-100"></div>
-
-              <Reveal delay={0.3}>
-                <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-full text-secondary">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-secondary text-lg">Phone</h3>
-                    <a href={`tel:${siteConfig.contact.phone}`} className="text-gray-600 mt-1 block hover:text-primary">
-                      {siteConfig.contact.phone}
+                    <p className="text-white font-bold">Phone</p>
+                    <a href="tel:5025550198" className="text-muted hover:text-primary transition-colors">
+                      (502) 555-0198
                     </a>
                   </div>
                 </div>
-              </Reveal>
-
-              <div className="border-t border-gray-100"></div>
-
-              <Reveal delay={0.4}>
                 <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-full text-secondary">
-                    <Mail className="w-6 h-6" />
-                  </div>
+                  <MapPin className="w-6 h-6 text-primary shrink-0" />
                   <div>
-                    <h3 className="font-bold text-secondary text-lg">Email</h3>
-                    <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-600 mt-1 block hover:text-primary">
-                      {siteConfig.contact.email}
-                    </a>
+                    <p className="text-white font-bold">Location</p>
+                    <p className="text-muted">
+                      4521 Oldham Pkwy<br />
+                      Louisville, KY 40222
+                    </p>
                   </div>
                 </div>
-              </Reveal>
-            </div>
+                <div className="flex items-start gap-4">
+                  <Clock className="w-6 h-6 text-primary shrink-0" />
+                  <div>
+                    <p className="text-white font-bold">Hours</p>
+                    <p className="text-muted">
+                      Wed - Thu: 11am - 9pm<br />
+                      Fri - Sat: 11am - 10pm<br />
+                      Sun: 11am - 9pm
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Static Map Image */}
+            <section className="relative h-64 w-full rounded-xl overflow-hidden border border-white/10">
+               <img 
+                src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=800&auto=format&fit=crop" 
+                alt="Map view of Terry's BBQ location"
+                className="w-full h-full object-cover"
+               />
+               <a 
+                href="https://maps.google.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors"
+               >
+                 <span className="bg-white text-background px-4 py-2 rounded font-oswald uppercase font-bold">
+                   View on Google Maps
+                 </span>
+               </a>
+            </section>
           </div>
 
           {/* Contact Form */}
-          <div>
-            <Reveal>
-              <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-                <h2 className="text-2xl font-serif text-secondary mb-6">Send a Message</h2>
-                
-                {isSuccess ? (
-                  <div className="bg-green-50 border border-green-200 p-6 rounded-lg text-center animate-fade-up">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <h3 className="text-lg font-bold text-secondary mb-2">Message Sent!</h3>
-                    <p className="text-gray-600">Thanks for reaching out. We'll get back to you within 24 hours.</p>
-                    <Button onClick={() => setIsSuccess(false)} variant="secondary" size="sm" className="mt-4">Send Another</Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <Input 
-                      label="Full Name" 
-                      id="contact-name"
-                      placeholder="Terry Foster" 
-                      {...register("name")}
-                      error={errors.name?.message}
-                    />
-                    <Input 
-                      label="Email Address" 
-                      id="contact-email"
-                      type="email" 
-                      placeholder="terry@example.com" 
-                      {...register("email")}
-                      error={errors.email?.message}
-                    />
-                    <Input 
-                      label="Phone Number" 
-                      id="contact-phone"
-                      type="tel" 
-                      placeholder="(859) 555-0123" 
-                      {...register("phone")}
-                      error={errors.phone?.message}
-                    />
-                    <div>
-                      <label htmlFor="contact-message" className="block text-sm font-medium mb-1.5 text-gray-900">Message</label>
-                      <textarea 
-                        id="contact-message"
-                        rows={5}
-                        className="w-full flex rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-500 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
-                        placeholder="How can we help you?"
-                        {...register("message")}
-                      />
-                      {errors.message && (
-                        <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
-                      )}
-                    </div>
-
-                    {/* Honeypot */}
-                    <input type="text" {...register("_gotcha")} className="hidden" tabIndex={-1} autoComplete="off" />
-
-                    <Button 
-                      type="submit" 
-                      variant="primary" 
-                      size="lg" 
-                      className="w-full"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </Button>
-                  </form>
-                )}
+          <div className="bg-surface p-8 md:p-10 rounded-xl border border-white/10 shadow-2xl">
+            {formState === "success" ? (
+              <div className="text-center py-12">
+                <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <h3 className="font-rye text-3xl text-white mb-2">Message Sent!</h3>
+                <p className="font-roboto text-muted">
+                  Thank you for reaching out. We&apos;ll get back to you within 24
+                  hours to discuss your BBQ needs.
+                </p>
+                <Button 
+                  onClick={() => {
+                    setFormState("idle");
+                    setFormData({ name: "", email: "", phone: "", date: "", guests: "", message: "", _gotcha: "" });
+                  }}
+                  className="mt-8"
+                >
+                  Send Another
+                </Button>
               </div>
-            </Reveal>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="(502) 555-0123"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="date">Event Date</Label>
+                    <Input
+                      id="date"
+                      name="date"
+                      type="date"
+                      value={formData.date}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="guests">Estimated Guests</Label>
+                    <Input
+                      id="guests"
+                      name="guests"
+                      type="number"
+                      value={formData.guests}
+                      onChange={handleChange}
+                      placeholder="e.g. 50"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message *</Label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className="flex w-full rounded-md border border-gray-700 bg-background px-4 py-3 text-sm text-white placeholder:text-gray-500 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
+                    placeholder="Tell us about your event..."
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  name="_gotcha"
+                  value={formData._gotcha}
+                  onChange={handleChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                {formState === "error" && (
+                  <p className="text-red-500 text-sm font-roboto">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+
+                <Button 
+                  type="submit" 
+                  className="w-full md:w-auto"
+                  disabled={formState === "loading"}
+                >
+                  {formState === "loading" ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            )}
           </div>
         </div>
       </div>

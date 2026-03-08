@@ -9,117 +9,77 @@
 // to edit to swap any image on the entire website.
 
 export const images = {
-  // Homepage hero banner — the first image visitors see — BBQ Smokehouse
-  "hero": {
-    src: "https://images.unsplash.com/photo-1558030006-4506719b1765?q=80&w=2070&auto=format&fit=crop",
-    alt: "Slow smoked brisket in a rustic smokehouse",
-    width: 2070,
-    height: 1380,
+  // Homepage hero banner — Low & Slow BBQ Action
+  hero: {
+    src: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop",
+    alt: "Smoked brisket being sliced with a beautiful smoke ring",
+    width: 2000,
+    height: 1333,
   },
 
-  // Alternative hero image (used on inner pages or as fallback) — BBQ Grill
+  // Alternative hero or background
   "hero-alt": {
     src: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=2000&auto=format&fit=crop",
-    alt: "Grilling meats over open flame",
+    alt: "Grilling ribs over open flame with smoke",
     width: 2000,
     height: 1333,
   },
 
-  // About page or About section on homepage — Pitmaster Terry
-  "about": {
-    src: "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=1974&auto=format&fit=crop",
-    alt: "Pitmaster checking the smoker",
-    width: 1974,
-    height: 2961,
+  // About Section — Terry or the pit
+  about: {
+    src: "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2000&auto=format&fit=crop",
+    alt: "Vintage smoker pit in action at Terry's BBQ",
+    width: 2000,
+    height: 1500,
   },
 
-  // First service card image — Catering Platter
-  "service-1": {
-    src: "https://images.unsplash.com/photo-1544025162-d76690b67f11?q=80&w=2069&auto=format&fit=crop",
-    alt: "Delicious BBQ catering platter",
-    width: 2069,
-    height: 1380,
+  // Menu Item: Brisket
+  "menu-brisket": {
+    src: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1000&auto=format&fit=crop",
+    alt: "Texas style smoked brisket platter",
+    width: 1000,
+    height: 1000,
   },
 
-  // Second service card image — Outdoor Event
-  "service-2": {
-    src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop",
-    alt: "Outdoor BBQ event setup",
-    width: 2070,
-    height: 1380,
+  // Menu Item: Ribs
+  "menu-ribs": {
+    src: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=1000&auto=format&fit=crop",
+    alt: "Saint Louis style pork ribs dry rubbed",
+    width: 1000,
+    height: 1000,
   },
 
-  // Third service card image — Private Party
-  "service-3": {
-    src: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop",
-    alt: "Private party banquet table",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Gallery image 1 — Ribs
-  "gallery-1": {
-    src: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=2070&auto=format&fit=crop",
-    alt: "Pile of sticky BBQ ribs",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Gallery image 2 — Brisket
-  "gallery-2": {
-    src: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=2070&auto=format&fit=crop",
-    alt: "Sliced beef brisket",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Team member photo — Terry
-  "team-1": {
-    src: "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=1974&auto=format&fit=crop",
-    alt: "Terry Foster Pitmaster",
-    width: 1974,
-    height: 2961,
-  },
-
-  // Gallery image 3 — Pulled Pork
-  "gallery-3": {
-    src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop",
-    alt: "Pulled pork sandwich",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Call-to-action section background — Fire/Embers
-  "cta": {
-    src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2069&auto=format&fit=crop",
-    alt: "Glowing embers and fire",
-    width: 2069,
-    height: 1380,
-  },
-
-  // Testimonials section background or decoration — Interior
-  "testimonial-bg": {
-    src: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2070&auto=format&fit=crop",
-    alt: "Rustic interior of Terry's BBQ",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Menu Item: Smoked Chicken
-  "menu-chicken": {
-    src: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&w=2070&auto=format&fit=crop",
-    alt: "Half smoked chicken with sauce",
-    width: 2070,
-    height: 1380,
-  },
-
-  // Menu Item: Pork Shoulder
+  // Menu Item: Pulled Pork
   "menu-pork": {
-    src: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=2000&auto=format&fit=crop",
-    alt: "Pulled pork shoulder",
+    src: "https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=1000&auto=format&fit=crop",
+    alt: "Pulled pork piled high with mustard coleslaw",
+    width: 1000,
+    height: 1000,
+  },
+
+  // Atmosphere / Interior
+  interior: {
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2000&auto=format&fit=crop",
+    alt: "Interior of a rustic western tavern restaurant",
     width: 2000,
     height: 1333,
-  }
+  },
+
+  // Team / Pitmaster
+  team: {
+    src: "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1000&auto=format&fit=crop",
+    alt: "Terry Foster checking the smoker",
+    width: 1000,
+    height: 1000,
+  },
+
+  // Catering Spread
+  catering: {
+    src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2000&auto=format&fit=crop",
+    alt: "Full catering spread with meats and sides",
+    width: 2000,
+    height: 1333,
+  },
 } as const;
 
 export type ImageSlot = keyof typeof images;

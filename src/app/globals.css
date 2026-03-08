@@ -3,20 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 45, 36, 30;
-  --background-start-rgb: 245, 241, 232;
-  --background-end-rgb: 245, 241, 232;
+  --foreground-rgb: 245, 245, 245;
+  --background-start-rgb: 18, 18, 18;
+  --background-end-rgb: 18, 18, 18;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #F5F1E8;
-  font-family: var(--font-roboto), sans-serif;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
-/* Ragged Edge for Story Section (Western Split) */
-.ragged-edge {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glass-panel {
+    @apply bg-surface border border-white/10 backdrop-blur-sm;
+  }
 }
 
 /* Custom Scrollbar */
@@ -24,19 +33,12 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F1E8;
+  background: #121212;
 }
 ::-webkit-scrollbar-thumb {
   background: #3E2723;
-  border: 2px solid #F5F1E8;
-  border-radius: 4px;
+  border-radius: 5px;
 }
-
-/* Utility: Hide scrollbar for carousel but keep functionality */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar-thumb:hover {
+  background: #BF360C;
 }
