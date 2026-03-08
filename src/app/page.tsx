@@ -1,3 +1,5 @@
+"use client";
+
 import HeroHome from "@/components/HeroHome";
 import SectionStory from "@/components/SectionStory";
 import MenuCard from "@/components/MenuCard";
