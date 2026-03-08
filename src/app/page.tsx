@@ -1,5 +1,3 @@
-"use client";
-
 import HeroHome from "@/components/HeroHome";
 import SectionStory from "@/components/SectionStory";
 import MenuCard from "@/components/MenuCard";
@@ -8,6 +6,7 @@ import images from "@/config/images";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
+import Image from "next/image";
 export const metadata = {
   title: "Home",
   description: "Authentic Kentucky BBQ. Low and slow.",
