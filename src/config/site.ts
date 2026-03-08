@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Terry's BBQ",
-  description: "Authentic Kentucky slow-smoked BBQ served with our famous mustard sauce. Down home cooking in an old western tavern atmosphere.",
+  description: "Authentic Kentucky slow-smoked BBQ. Low & slow since 1998. Famous for our signature mustard sauce.",
   url: "https://terrysbbq.com",
   links: {
     twitter: "https://twitter.com",
@@ -8,16 +8,14 @@ export const siteConfig = {
     facebook: "https://facebook.com",
   },
   contact: {
-    address: "4521 Westheimer Rd, Suite 200, Houston, TX 77027", // Using the requested format in prompt as placeholder for KY
-    phone: "(512) 555-0198",
-    email: "hello@terrysbbq.com",
+    phone: "(859) 254-1234",
+    email: "info@terrysbbq.com",
+    address: "121 Manchester St, Lexington, KY 40508",
   },
-  nav: [
-    { title: "Home", href: "/" },
-    { title: "Menu", href: "/menu" },
-    { title: "Our Story", href: "/#story" },
-    { title: "Catering", href: "/catering" },
-    { title: "Contact", href: "/contact" },
+  hours: [
+    { day: "Mon - Thu", time: "11:00 AM - 9:00 PM" },
+    { day: "Fri - Sat", time: "11:00 AM - 10:00 PM" },
+    { day: "Sunday", time: "12:00 PM - 8:00 PM" },
   ],
 };
 

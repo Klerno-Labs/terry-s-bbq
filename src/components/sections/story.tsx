@@ -1,51 +1,70 @@
 "use client";
 
-import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/button";
 import { images } from "@/config/images";
 import Image from "next/image";
-import { Signature } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export function Story() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+
   return (
-    <section id="story" className="relative bg-background py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center relative">
+    <section ref={ref} className="py-24 lg:py-32 bg-neutral-bg relative overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Column */}
-          <div className="w-full md:w-2/5 pr-0 md:pr-12 z-10 relative">
+          <div className="w-full lg:w-1/2 space-y-6">
             <Reveal>
-              <span className="font-accent text-primary text-lg mb-2 block">The Pitmaster</span>
-              <h2 className="font-heading text-4xl text-secondary mb-6 leading-tight">
+              <span className="text-primary font-marker text-lg uppercase tracking-wider">The Pitmaster</span>
+              <h2 className="text-4xl lg:text-5xl font-serif text-secondary">
                 Born in the Bluegrass, Smoked to Perfection
               </h2>
-              <div className="space-y-4 text-text-muted leading-relaxed font-body text-lg">
-                <p>
-                  I started Terry&apos;s BBQ with a simple pit and a whole lot of patience. Growing up in Kentucky, I learned that good things take time. You can&apos;t rush perfection, and you sure can&apos;t rush true BBQ.
-                </p>
-                <p>
-                  We use post-oak wood and a mustard-based vinegar sauce that&apos;s been in my family for three generations. Whether it&apos;s our 14-hour brisket or our fall-off-the-bone ribs, everything that comes out of our kitchen is made the hard way—the right way.
-                </p>
-              </div>
-              <div className="mt-8 flex items-center gap-3 text-secondary">
-                 <div className="border-b-2 border-accent w-16 mb-2"></div>
-                 <div className="font-heading text-xl italic">Terry Foster</div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Terry Foster didn&apos;t just open a restaurant; he continued a legacy. Growing up in the heart of Kentucky, he learned that good barbecue isn&apos;t rushed. It&apos;s patience, respect for the meat, and the right kind of fire.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                We start with premium locally sourced meats, apply our secret dry rub, and smoke them low and slow for up to 16 hours. But what truly sets us apart is our signature Gold Dust Mustard Sauce—a tangy, slightly sweet tribute to our Kentucky roots that pairs perfectly with everything.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="pt-4">
+                <img 
+                  src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f354/32.png" 
+                  alt="Signature" 
+                  className="h-12 opacity-70 invert sepia hue-rotate-180" 
+                  style={{filter: "invert(20%) sepia(50%) hue-rotate(320deg)"}}
+                />
+                <p className="font-serif italic text-secondary text-xl mt-2">Terry Foster</p>
               </div>
             </Reveal>
           </div>
 
-          {/* Image Column - Ragged Edge */}
-          <div className="w-full md:w-3/5 h-[500px] md:h-[600px] relative mt-12 md:mt-0">
-            <div className="absolute inset-0 bg-gray-200 transform md:translate-x-4 md:translate-y-4 z-0" />
-            <div className="relative h-full w-full z-10 shadow-hover">
-              <Image
-                src={images["about"].src}
-                alt={images["about"].alt}
-                fill
-                className="object-cover"
-              />
-              {/* Ragged Edge Effect via CSS Clip Path */}
-              <div className="absolute inset-0 bg-background z-20 clip-path-polygon opacity-0 md:opacity-100 pointer-events-none" />
-            </div>
+          {/* Image Column with Parallax */}
+          <div className="w-full lg:w-1/2 relative h-[500px] lg:h-[600px]">
+            <Reveal delay={0.3}>
+              <div className="relative w-full h-full rounded-tl-[100px] rounded-br-xl overflow-hidden shadow-2xl border-4 border-secondary/10 group">
+                <motion.div style={{ y }} className="relative w-full h-full">
+                  <Image
+                    src={images["about"].src}
+                    alt={images["about"].alt}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                </motion.div>
+              </div>
+            </Reveal>
+            {/* Decorative Element */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary/10 rounded-full -z-10 blur-2xl"></div>
           </div>
         </div>
       </div>

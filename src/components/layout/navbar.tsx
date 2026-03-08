@@ -3,84 +3,95 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ShoppingCart, Phone } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
+import { MobileNav } from "./mobile-nav";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
-          isScrolled || pathname !== "/"
-            ? "bg-dark-surface/95 backdrop-blur-md shadow-header text-white py-2"
-            : "bg-transparent text-white py-4"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+          scrolled
+            ? "bg-neutral-dark-surface/95 backdrop-blur-md border-secondary shadow-md py-2"
+            : "bg-transparent border-transparent py-4"
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="font-heading text-2xl sm:text-3xl tracking-wider text-accent hover:text-white transition-colors">
-              Terry&apos;s BBQ
-            </Link>
-
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-8 font-body font-medium">
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "hover:text-accent transition-colors",
-                    pathname === item.href && "text-accent"
-                  )}
-                >
-                  {item.title}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Actions */}
-            <div className="flex items-center space-x-4">
-              <Link href="tel:5125550198" className="hidden sm:flex items-center text-sm font-medium hover:text-accent">
-                <Phone className="w-4 h-4 mr-2" />
-                (512) 555-0198
-              </Link>
-              <Link href="/menu">
-                 <Button variant="primary" size="sm" className="hidden md:inline-flex">
-                   Order Now
-                 </Button>
-              </Link>
-              
-              {/* Mobile Toggle */}
-              <button
-                className="md:hidden p-2"
-                onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label="Open menu"
-              >
-                {mobileOpen ? <X /> : <Menu />}
-              </button>
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className={cn(
+              "text-2xl md:text-3xl font-serif tracking-wider transition-colors",
+              scrolled ? "text-primary" : "text-white group-hover:text-accent"
+            )}>
+              TERRY&apos;S BBQ
             </div>
+          </Link>
+
+          <nav className="hidden md:flex items-center gap-8">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/menu", label: "Menu" },
+              { href: "/catering", label: "Catering" },
+              { href: "/contact", label: "Contact" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium uppercase tracking-wide transition-colors relative py-2",
+                  pathname === link.href
+                    ? "text-accent font-bold"
+                    : scrolled
+                    ? "text-gray-300 hover:text-white"
+                    : "text-gray-200 hover:text-accent"
+                )}
+              >
+                {link.label}
+                {pathname === link.href && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent" />
+                )}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <Link href="/menu">
+              <Button variant="primary" size="sm" className="hidden md:flex items-center gap-2">
+                <ShoppingCart className="w-4 h-4" />
+                Order Now
+              </Button>
+            </Link>
+            
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="md:hidden p-2 text-white hover:text-accent transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </header>
-      
-      {mobileOpen && <MobileNav close={() => setMobileOpen(false)} />}
+
+      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
   );
 }

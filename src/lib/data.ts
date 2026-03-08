@@ -1,128 +1,88 @@
-import { ImageSlot } from "@/config/images";
-
-export interface MenuItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: "starters" | "meats" | "sides";
-  image: ImageSlot;
-  tags?: string[];
-  isFeatured?: boolean;
-}
-
-export const menuItems: MenuItem[] = [
+export const menuItems = [
   {
-    id: "brisket",
-    name: "Texas Style Brisket",
-    description: "Prime brisket slow smoked for 14 hours over post oak wood. Served with our signature mustard sauce.",
+    id: "1",
+    name: "Signature Beef Brisket",
+    description: "Prime brisket smoked for 14 hours over post oak wood. Served with our house-made pickles and white bread.",
+    price: 18,
+    category: "meats",
+    image: "menu-1",
+    tags: ["House Fave", "Gluten Free"],
+  },
+  {
+    id: "2",
+    name: "St. Louis Style Ribs",
+    description: "Dry-rubbed pork ribs, slow smoked until fall-off-the-bone tender. Painted with our Gold Dust Mustard Sauce.",
     price: 22,
     category: "meats",
-    image: "hero-alt",
-    tags: ["House Fave", "Gluten Free"],
-    isFeatured: true,
+    image: "menu-2",
+    tags: ["Spicy"],
   },
   {
-    id: "ribs",
-    name: "St. Louis Ribs",
-    description: "Half rack of pork ribs dry rubbed and smoked until fall-off-the-bone tender.",
-    price: 24,
-    category: "meats",
-    image: "service-1",
-  },
-  {
-    id: "pulled-pork",
-    name: "Pulled Pork Shoulder",
-    description: "Slow roasted and hand-pulled. Mixed with a hint of vinegar sauce.",
-    price: 16,
-    category: "meats",
-    image: "service-2",
-  },
-  {
-    id: "wings",
-    name: "Smoked Wings",
-    description: "Jumbo wings smoked then crispy fried. Tossed in your choice of dry rub or mild sauce.",
+    id: "3",
+    name: "Kentucky Pulled Pork",
+    description: "Boston butt smoked low and slow, hand-pulled, and tossed in a light vinegar sauce. Served on a toasted brioche bun.",
     price: 14,
-    category: "starters",
-    image: "gallery-1",
-  },
-  {
-    id: "mac",
-    name: "Three Cheese Mac",
-    description: "Creamy four-cheese blend topped with bacon breadcrumbs.",
-    price: 6,
-    category: "sides",
-    image: "gallery-2",
-  },
-  {
-    id: "slaw",
-    name: "Mustard Slaw",
-    description: "Crisp cabbage and carrots in our house-made mustard vinaigrette.",
-    price: 4,
-    category: "sides",
-    image: "gallery-3",
+    category: "meats",
+    image: "menu-3",
+    tags: ["Best Seller"],
   },
 ];
 
-export const testimonials = [
+export const reviews = [
   {
-    id: 1,
+    id: "1",
     name: "Maria L.",
     role: "Local Foodie",
-    content: "Hands down the best brisket in Kentucky. The mustard sauce is a game changer—I've never tasted anything like it. The atmosphere feels like a true old western tavern.",
+    content: "I've been searching for authentic BBQ in Kentucky for years. Terry's is it. The mustard sauce is a game changer—sweet, tangy, and just a little kick. The brisket melts in your mouth.",
     rating: 5,
   },
   {
-    id: 2,
+    id: "2",
     name: "James T.",
-    role: "Event Planner",
-    content: "We hired Terry's for our company catering and it was a massive hit. The 'Feeding a Posse' package was perfect. Professional service and incredible food.",
+    role: "Regular Customer",
+    content: "You can taste the tradition in every bite. The atmosphere feels like an old western tavern, and the staff treats you like family. Best ribs in the Bluegrass, hands down.",
     rating: 5,
   },
   {
-    id: 3,
-    name: "Sarah B.",
-    role: "Regular Customer",
-    content: "You can taste the time and effort put into every bite. The ribs are tender and smoky, just how BBQ should be. Don't skip the mac and cheese!",
+    id: "3",
+    name: "Sarah Jenkins",
+    role: "Catering Client",
+    content: "Terry's catered our company reunion of 150 people. They handled everything flawlessly. The 'Feeding a Posse' package was a hit, and the setup looked professional and rustic.",
+    rating: 5,
+  },
+  {
+    id: "4",
+    name: "Mike R.",
+    role: "Truck Driver",
+    content: "I stop here every time I pass through Lexington. It's the highlight of my route. Portions are huge, prices are fair, and that mac and cheese is addictive.",
     rating: 5,
   },
 ];
 
-export const cateringPackages = [
+export const packages = [
   {
-    id: "crew",
+    id: "1",
     name: "The Crew",
-    description: "Perfect for small gatherings and office lunches.",
-    price: "150",
-    features: [
-      "1lb Pulled Pork",
-      "1 Quart Slaw",
-      "1 Quart Mac & Cheese",
-      "12 Buns & Sauce",
-    ],
+    description: "Perfect for a small team lunch or family dinner.",
+    price: 150,
+    feeds: "10-12 People",
+    includes: ["2 lbs Pulled Pork", "2 lb Brisket", "1 Gallon Beans", "1 Gallon Slaw", "Buns & Sauce", "Paper Goods"],
   },
   {
-    id: "party",
+    id: "2",
     name: "The Party",
-    description: "Our most popular choice for family reunions.",
-    price: "300",
-    features: [
-      "2lb Brisket & 2lb Ribs",
-      "2 Quarts Slaw",
-      "2 Quarts Beans",
-      "24 Buns & Sauce",
-    ],
+    description: "Our most popular package for gatherings and birthdays.",
+    price: 350,
+    feeds: "25-30 People",
+    includes: ["4 lbs Pulled Pork", "4 lbs Brisket", "2 Racks Ribs", "2 Gallons Beans", "2 Gallon Slaw", "Cornbread", "Buns & Sauce", "Paper Goods"],
+    featured: true,
   },
   {
-    id: "feast",
+    id: "3",
     name: "The Feast",
-    description: "The full spread for the biggest appetites.",
-    price: "500",
-    features: [
-      "4lb Mixed Meats (Brisket, Ribs, Pork)",
-      "Sides for 30 People",
-      "Pickles, Onions & Bread",
-      "Dessert Included",
-    ],
+    description: "The full spread for weddings and large corporate events.",
+    price: 750,
+    feeds: "60-70 People",
+    includes: ["8 lbs Pulled Pork", "8 lbs Brisket", "5 Racks Ribs", "1 Smoked Chicken", "5 Gallons Beans", "5 Gallons Slaw", "Cornbread Muffins", "Buns & Sauce", "Full Service Setup"],
   },
 ];

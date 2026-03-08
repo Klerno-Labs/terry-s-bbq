@@ -4,39 +4,51 @@
 
 @layer base {
   :root {
-    --foreground-rgb: 45, 36, 30;
-    --background-start-rgb: 245, 241, 232;
-    --background-end-rgb: 245, 241, 232;
-  }
+    --background: 245 241 232; /* #F5F1E8 Aged Parchment */
+    --foreground: 45 36 30; /* #2D241E Dark Coffee */
+    
+    --card: 255 255 255;
+    --card-foreground: 45 36 30;
+    
+    --popover: 255 255 255;
+    --popover-foreground: 45 36 30;
+    
+    --primary: 216 67 21; /* #D84315 Burnt Orange */
+    --primary-foreground: 255 255 255;
+    
+    --secondary: 62 39 35; /* #3E2723 Leather Brown */
+    --secondary-foreground: 255 255 255;
+    
+    --muted: 245 241 232;
+    --muted-foreground: 109 93 86;
+    
+    --accent: 255 183 77; /* #FFB74D Golden Ember */
+    --accent-foreground: 33 33 33;
+    
+    --destructive: 0 84.2 60.2;
+    --destructive-foreground: 210 40 98;
 
+    --border: 62 39 35;
+    --input: 62 39 35;
+    --ring: 216 67 21;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
   body {
-    @apply bg-background text-text-main font-body antialiased;
+    @apply bg-neutral-bg text-foreground font-sans antialiased;
   }
-  
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-primary;
-  }
-
-  h1 { @apply text-4xl sm:text-5xl lg:text-6xl; }
-  h2 { @apply text-3xl sm:text-4xl; }
-  h3 { @apply text-2xl; }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  .clip-path-polygon {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
-  }
-
-  .text-shadow {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    @apply font-serif;
   }
 }
 
-/* Custom Scrollbar for Webkit */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -45,8 +57,13 @@
 }
 ::-webkit-scrollbar-thumb {
   background: #3E2723;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #D84315;
+}
+
+/* Wood plank pattern utility */
+.wood-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20z' fill='%233E2723' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
 }

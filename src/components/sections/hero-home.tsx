@@ -1,58 +1,62 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
-import { ChevronDown } from "lucide-react";
+import { images } from "@/config/images";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export function HeroHome() {
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("story");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToMenu = () => {
+    document.getElementById("featured-menu")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Image (Simulating Video) */}
+    <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=2000&auto=format&fit=crop"
-          alt="Smoked BBQ Background"
+          src={images["hero"].src}
+          alt={images["hero"].alt}
           fill
-          className="object-cover"
           priority
-          quality={90}
+          className="object-cover"
+          sizes="100vw"
         />
-        {/* Vignette Overlay */}
-        <div className="absolute inset-0 bg-black/60 bg-gradient-radial" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#F5F1E8]"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white max-w-4xl px-4">
+      <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <Reveal>
-          <h1 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-tight mb-4 text-accent drop-shadow-lg">
-            Low & Slow
+          <span className="inline-block py-1 px-3 border border-accent/50 rounded-full text-accent text-sm font-marker tracking-widest mb-6 uppercase">
+            Est. 1998 • Lexington, KY
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-4 text-shadow-lg leading-tight">
+            Low & <span className="text-accent">Slow</span>
           </h1>
-          <p className="font-body text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto text-gray-100">
-            Authentic Kentucky slow-smoked meats served in our famous mustard BBQ sauce.
+          <p className="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto text-gray-200">
+            Authentic Kentucky barbecue smoked over post oak wood. Famous for our Gold Dust Mustard Sauce.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="primary" asChild>
-              <a href="/menu">Order Pickup</a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button size="lg" onClick={scrollToMenu}>
+              View Full Menu
             </Button>
-            <Button size="lg" variant="secondary" asChild>
-              <a href="/menu">View Full Menu</a>
+            <Button variant="secondary" size="lg" asChild>
+              <Link href="/catering">Catering Info</Link>
             </Button>
           </div>
         </Reveal>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70 cursor-pointer" onClick={scrollToNext}>
-        <ChevronDown size={32} />
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+        <button onClick={scrollToMenu} aria-label="Scroll to content">
+          <ChevronDown className="w-8 h-8" />
+        </button>
       </div>
     </section>
   );
 }
+
+import Link from "next/link";
