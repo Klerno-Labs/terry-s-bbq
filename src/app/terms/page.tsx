@@ -6,22 +6,13 @@ import { images } from "@/config/images";
 import { Metadata } from "next";
 import { useEffect } from "react";
 
-// Note: Metadata is typically exported from Server Components. 
-// Since we use client-side animations here, we set the title via useEffect or layout, 
-// but for Next.js 14 App Router, we can still export metadata if the component is async 
-// or move the export to a parent. However, per "CRITICAL RULES", metadata export 
-// should be in server components. This page uses client directives for animations.
-// We will handle page title via standard document effect or rely on the static export below 
-// which Next.js 14 supports even in client components (with warnings in older versions, 
-// but valid in 14+). For strict compliance, we keep the metadata export.
-
 export const metadata: Metadata = {
-  title: "Privacy Policy | Terry's BBQ",
-  description: "Read Terry's BBQ privacy policy to learn how we protect your information when you order catering or visit our Kentucky tavern.",
+  title: "Terms of Service | Terry's BBQ",
+  description: "Terms of service for Terry's BBQ catering and dining. Understand our policies regarding orders, payments, and services.",
   openGraph: {
-    title: "Privacy Policy | Terry's BBQ",
-    description: "Terry's BBQ commitment to your privacy. We slow smoke everything, including our data policies.",
-    url: "https://terrysbbq.com/privacy",
+    title: "Terms of Service | Terry's BBQ",
+    description: "The rules of the table. Read Terry's BBQ terms and conditions.",
+    url: "https://terrysbbq.com/terms",
     siteName: "Terry's BBQ",
     images: [
       {
@@ -35,7 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PrivacyPolicy() {
+export default function TermsOfService() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -59,10 +50,10 @@ export default function PrivacyPolicy() {
           className="relative z-10 text-center px-4"
         >
           <h1 className="font-rye text-5xl md:text-7xl text-white mb-4 tracking-wide">
-            Privacy Policy
+            Terms of Service
           </h1>
           <p className="font-oswald text-[#FFAB00] uppercase tracking-widest text-lg">
-            Your Trust is Our Secret Recipe
+            The Rules of the Table
           </p>
         </motion.div>
       </div>
@@ -75,70 +66,75 @@ export default function PrivacyPolicy() {
         className="max-w-4xl mx-auto px-6 py-16 md:py-24"
       >
         <p className="text-lg text-gray-400 mb-12 leading-relaxed">
-          At <span className="text-[#FFAB00] font-bold">Terry&apos;s BBQ</span>, we respect your privacy as much as we respect the low-and-slow process of smoking brisket. This Privacy Policy explains how we collect, use, and protect your information when you visit our tavern, use our catering services, or interact with us online in Kentucky and beyond.
+          Welcome to <span className="text-[#FFAB00] font-bold">Terry&apos;s BBQ</span>. By visiting our tavern in Kentucky, ordering our mustard-based BBQ catering, or using our website, you agree to comply with and be bound by the following terms and conditions of use.
         </p>
 
         <div className="space-y-12">
           <section>
             <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              1. Information We Collect
-            </h2>
-            <p className="mb-4 text-gray-300">
-              We collect information to provide better services to all our users. This includes:
-            </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-400 ml-4">
-              <li><strong className="text-white">Personal Details:</strong> Name, email address, phone number, and delivery address when you place a catering order or join our mailing list.</li>
-              <li><strong className="text-white">Payment Information:</strong> Credit card details processed securely through third-party providers. We do not store your full card numbers on our servers.</li>
-              <li><strong className="text-white">Usage Data:</strong> Pages visited, time spent, and device type to help us improve the user experience of our site.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              2. How We Use Your Information
-            </h2>
-            <p className="mb-4 text-gray-300">We use the information we collect to communicate with you regarding:</p>
-            <ul className="list-disc list-inside space-y-2 text-gray-400 ml-4">
-              <li>Order confirmations and catering updates.</li>
-              <li>Responses to your inquiries or questions.</li>
-              <li>Special offers, events, and new menu items (only if you opt-in).</li>
-              <li>Security and fraud prevention measures.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              3. Sharing Your Information
+              1. Acceptance of Terms
             </h2>
             <p className="text-gray-300">
-              We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share your data only with trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential.
+              Please read these terms and conditions carefully before using Our Service. Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms apply to all visitors, users, and others who access or use the Service.
             </p>
           </section>
 
           <section>
             <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              4. Security
-            </h2>
-            <p className="text-gray-300">
-              We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the Internet is 100% secure. While we strive to protect your personal data, we cannot guarantee its absolute security.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              5. Your Consent
-            </h2>
-            <p className="text-gray-300">
-              By using our site, you consent to our Privacy Policy. We reserve the right to update this policy at any time. Changes will be posted on this page.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
-              6. Contacting Us
+              2. Catering & Orders
             </h2>
             <p className="text-gray-300 mb-4">
-              If you have questions regarding this Privacy Policy, please contact us at:
+              All catering orders are subject to availability. We reserve the right to refuse service or limit quantities at our discretion.
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-400 ml-4">
+              <li><strong className="text-white">Deposits:</strong> A 50% non-refundable deposit is required for all catering orders to secure your date.</li>
+              <li><strong className="text-white">Cancellations:</strong> Orders must be cancelled at least 72 hours prior to the event for a refund of the deposit balance.</li>
+              <li><strong className="text-white">Changes:</strong> Changes to guest count must be made 48 hours before the event. Changes made after this time cannot be guaranteed.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
+              3. Allergies & Dietary Restrictions
+            </h2>
+            <p className="text-gray-300">
+              While we strive to accommodate dietary needs, our kitchen handles common allergens including nuts, soy, dairy, and gluten. We cannot guarantee an environment completely free of allergens. Please inform our staff of any severe allergies.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
+              4. Intellectual Property
+            </h2>
+            <p className="text-gray-300">
+              The Service and its original content, features, and functionality are and will remain the exclusive property of Terry&apos;s BBQ and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
+              5. Limitation of Liability
+            </h2>
+            <p className="text-gray-300">
+              In no event shall Terry&apos;s BBQ, our directors, officers, employees, affiliates, agents, contractors, interns, suppliers, service providers, or licensors be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
+              6. Governing Law
+            </h2>
+            <p className="text-gray-300">
+              These Terms shall be governed and construed in accordance with the laws of the State of Kentucky, without regard to its conflict of law provisions.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-rye text-3xl text-[#BF360C] mb-4 border-b border-gray-800 pb-2">
+              7. Contact Information
+            </h2>
+            <p className="text-gray-300 mb-4">
+              If you have any questions about these Terms, please contact us:
             </p>
             <div className="bg-[#1E1E1E] p-6 rounded-sm border-l-4 border-[#BF360C]">
               <p className="font-oswald text-xl text-white mb-2">Terry&apos;s BBQ</p>
