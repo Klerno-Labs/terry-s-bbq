@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terry's BBQ | Low, Slow, & Southern</title>
+    <meta name="description" content="Authentic Kentucky BBQ. Slow smoked brisket, ribs, and pork in a down-home southern atmosphere. Experience Terry's BBQ today.">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Typography System: Z.ai Spec -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Permanent+Marker&family=Roboto:wght@300;400;500;700&family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * DESIGN SYSTEM: TERRY'S BBQ
+         * Theme: Down Home Southern / Old Western Tavern
+         * Palette: Brown, Black, Orange
+         */
+
+        :root {
+            /* Palette */
+            --primary: #BF360C;      /* Deep Burnt Orange */
+            --primary-hover: #E64A19;
+            --secondary: #3E2723;    /* Dark Coffee Bean / Leather */
+            --accent: #FFAB00;       /* Golden Amber */
+            --bg-dark: #121212;      /* Rich Charcoal */
+            --bg-surface: #1E1E1E;   /* Lighter Charcoal */
+            --text-main: #F5F5F5;    /* Off-White */
+            --text-muted: #9E9E9E;   /* Cool Grey */
+            
+            /* Spacing */
+            --container-width: 1280px;
+            --header-height: 80px;
+            --section-padding: 6rem;
+            
+            /* Animation Curves */
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        /* RESET & BASE */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        h1, h2 { font-family: 'Rye', cursive; }
+        h3, h4, h5, h6, .nav-link, .btn { font-family: 'Oswald', sans-serif; }
+        .handwritten { font-family: 'Permanent Marker', cursive; }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        button, input, textarea { font-family: inherit; }
+
+        /* UTILITIES */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-primary { color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+
+        /* VISIBILITY ANIMATIONS (Fade Up) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* COMPONENTS: BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(191, 54, 12, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(191, 54, 12, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            z-index: 100;
+            transition: background-color 0.3s ease, padding 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Rye', cursive;
+            font-size: 1.75rem;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .logo span { color: var(--primary); }
+
+        .desktop-nav { display: none; }
+        .desktop-nav a {
+            margin-left: 2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            position: relative;
+        }
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .desktop-nav a:hover::after { width: 100%; }
+        .desktop-nav a:hover { color: var(--primary); }
+
+        .mobile-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 102;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* MOBILE NAV DRAWER */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--secondary);
+            z-index: 101;
+            transform: translateX(100%);
+            transition: transform 0.4s var(--ease-out);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjM0UyNzIzIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiM0RTM0MmUiLz4KPC9zdmc+');
+        }
+        .mobile-nav.active { transform: translateX(0); }
+        .mobile-nav a {
+            font-family: 'Rye', cursive;
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            color: var(--text-main);
+        }
+        .mobile-nav a:hover { color: var(--primary); }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            z-index: 1;
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 2;
+        }
+
+        #smoke-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Oswald', sans-serif;
+            color: var(--accent);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: #ddd;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* SOCIAL PROOF MARQUEE */
+        .marquee-section {
+            background-color: var(--primary);
+            padding: 1.5rem 0;
+            overflow: hidden;
+            border-bottom: 4px solid var(--secondary);
+        }
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-item {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            margin: 0 3rem;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-item::before {
+            content: '★';
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: var(--section-padding) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        .section-title span { color: var(--primary); }
+        
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* MEAT LOCKER (FEATURED MENU) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+        
+        .menu-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: var(--bg-surface);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(191, 54, 12, 0.15);
+        }
+
+        .menu-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .menu-img { transform: scale(1.05); }
+
+        .menu-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.25rem 0.75rem;
+            font-family: 'Permanent Marker', cursive;
+            transform: rotate(-5deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .menu-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menu-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .menu-price {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .add-btn {
+            background: transparent;
+            border: 1px solid var(--text-muted);
+            color: var(--text-main);
+            padding: 0.5rem 1.5rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .add-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ATMOSPHERE (ABOUT) */
+        .about-section {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #ddd;
+        }
+
+        .about-img-container {
+            position: relative;
+        }
+        
+        .about-img {
+            border: 10px solid rgba(255,255,255,0.05);
+            filter: sepia(0.3) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+        .about-img:hover { filter: sepia(0) contrast(1); }
+
+        /* CATERING FORM */
+        .catering-section {
+            background-color: var(--bg-dark);
+        }
+
+        .form-container {
+            background-color: var(--bg-surface);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid #333;
+            border-bottom: 2px solid #444;
+            padding: 1rem;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-bottom-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        .checkbox-item input {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        /* TESTIMONIALS (POLAROIDS) */
+        .testimonials {
+            background-color: #2a2a2a;
+            padding-bottom: 8rem;
+        }
+
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .polaroid {
+            background-color: #f0f0f0;
+            padding: 1.5rem 1.5rem 3rem 1.5rem;
+            color: #333;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, z-index 0s;
+            position: relative;
+        }
+
+        .polaroid:nth-child(odd) { transform: rotate(2deg); }
+        .polaroid:nth-child(even) { transform: rotate(-2deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; }
+
+        .quote-icon {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3rem;
+            color: #ddd;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .quote-text {
+            font-family: 'Roboto', serif;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        .author { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; color: var(--secondary); }
+        .role { font-size: 0.9rem; color: #666; }
+
+        /* FOOTER */
+        .footer {
+            background-color: #0a0a0a;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a:hover { color: var(--primary); }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #222;
+            padding-top: 2rem;
+        }
+
+        /* RESPONSIVE */
+        @media (min-width: 768px) {
+            h1 { font-size: 5rem; }
+            .desktop-nav { display: block; }
+            .mobile-toggle { display: none; }
+            
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .menu-card:nth-child(even) .menu-content { order: -1; } /* Zig zag */
+            
+            .split-layout { grid-template-columns: 1fr 1fr; }
+            
+            .hero-title { font-size: 5rem; }
+            .hero-actions { gap: 2rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid { grid-template-columns: repeat(3, 1fr); }
+            .menu-card { grid-template-columns: 1fr; } /* Reset zig zag for 3 col if needed, or keep */
+        }
+
+        /* STICKY MOBILE CTA (Fixed Bottom) */
+        .mobile-sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-surface);
+            border-top: 1px solid #333;
+            padding: 1rem;
+            z-index: 90;
+            justify-content: space-around;
+        }
+        @media (max-width: 767px) {
+            .mobile-sticky-cta { display: flex; }
+            body { padding-bottom: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">Terry's <span>BBQ</span></a>
+            
+            <nav class="desktop-nav">
+                <a href="#meat-locker">Menu</a>
+                <a href="#about">Atmosphere</a>
+                <a href="#catering">Catering</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#catering" class="text-primary">Order Now</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle Menu" id="menuToggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#meat-locker">Menu</a>
+        <a href="#about">Atmosphere</a>
+        <a href="#catering">Catering</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#catering" style="color: var(--primary);">Order Pickup</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://picsum.photos/seed/bbqhero1/1920/1080.jpg" alt="Slow smoked brisket" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <canvas id="smoke-canvas"></canvas>
+        
+        <div class="hero-content reveal">
+            <p class="hero-subtitle">Est. 1985 • Kentucky</p>
+            <h1 class="hero-title">Low, Slow, & Southern</h1>
+            <p class="hero-desc">We slow smoke everything from chicken to pork. Based out of Kentucky, everything is bathed in our secret mustard-based BBQ sauce.</p>
+            <div class="hero-actions">
+                <a href="#catering" class="btn btn-primary">Request Catering</a>
+                <a href="#meat-locker" class="btn btn-secondary">View Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <div class="marquee-item">Voted Best Ribs in Kentucky</div>
+            <div class="marquee-item">Featured in Southern Living</div>
+            <div class="marquee-item">"The Mustard Sauce is Magic" - Food Network</div>
+            <div class="marquee-item">4.9 Stars on Google Reviews</div>
+            <div class="marquee-item">Family Owned for 3 Generations</div>
+            <!-- Duplicate for infinite loop -->
+            <div class="marquee-item">Voted Best Ribs in Kentucky</div>
+            <div class="marquee-item">Featured in Southern Living</div>
+            <div class="marquee-item">"The Mustard Sauce is Magic" - Food Network</div>
+            <div class="marquee-item">4.9 Stars on Google Reviews</div>
+            <div class="marquee-item">Family Owned for 3 Generations</div>
+        </div>
+    </div>
+
+    <!-- The Meat Locker (Featured Menu) -->
+    <section id="meat-locker" class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">The <span>Meat Locker</span></h2>
+            <p class="section-desc">Fresh off the pit. Served with white bread, pickles, and your choice of two sides.</p>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-card reveal">
+                <div class="menu-img-wrapper">
+                    <img src="https://picsum.photos/seed/bbqribs/800/600.jpg" alt="St. Louis Style Ribs" class="menu-img">
+                    <span class="menu-badge">Pitmaster's Pick</span>
+                </div>
+                <div class="menu-content">
+                    <h3 class="menu-title">St. Louis Ribs</h3>
+                    <p class="menu-desc">Dry rubbed and smoked for 12 hours over hickory wood. Glazed with our signature mustard sauce.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">$24.99</span>
+                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-card reveal">
+                <div class="menu-img-wrapper">
+                    <img src="https://picsum.photos/seed/bbqbrisket/800/600.jpg" alt="Texas Style Brisket" class="menu-img">
+                </div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Prime Brisket</h3>
+                    <p class="menu-desc">Marbled Black Angus brisket smoked low and slow. Moist or lean cut, chopped or sliced by hand.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">$22.99</span>
+                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-card reveal">
+                <div class="menu-img-wrapper">
+                    <img src="https://picsum.photos/seed/bbqpork/800/600.jpg" alt="Pulled Pork Shoulder" class="menu-img">
+                    <span class="menu-badge">House Favorite</span>
+                </div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Pulled Pork</h3>
+                    <p class="menu-desc">Boston butt smoked for 14 hours until it falls apart. Mixed with a hint of vinegar and our sauce.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">$18.99</span>
+                        <button class="add-btn" onclick="alert('Added to inquiry!')">Add to Plate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="#" class="btn btn-secondary">View Full Menu</a>
+        </div>
+    </section>
+
+    <!-- Atmosphere (About) -->
+    <section id="about" class="about-section">
+        <div class="container split-layout">
+            <div class="about-text reveal">
+                <h3>A Story of Smoke</h3>
+                <p>Terry Foster started cooking in a backyard shed in 1985 with nothing but a smoker made from an old oil tank and a dream. Thirty years later, we're still serving the same recipes, with the same patience, in our "Old Western" tavern style hall.</p>
+                <p>We believe BBQ isn't just food; it's an event. It's the wait, the smell of the smoke, and the community around the table. Come sit a spell, grab a bourbon, and let us feed you like family.</p>
+                <p class="handwritten" style="color: var(--primary); font-size: 1.5rem; margin-top: 1rem;">- Terry Foster, Pitmaster</p>
+            </div>
+            <div class="about-img-container reveal">
+                <img src="https://picsum.photos/seed/bbqshop/800/600.jpg" alt="Terry's BBQ Interior" class="about-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Catering Form -->
+    <section id="catering" class="catering-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Catering <span>Inquiry</span></h2>
+                <p class="section-desc">Bring the smoke to your next event. Weddings, corporate lunches, or backyard blowouts.</p>
+            </div>
+
+            <div class="form-container reveal">
+                <form id="cateringForm">
+                    <div class="form-group">
+                        <label class="form-label" for="date">Event Date</label>
+                        <input type="date" id="date" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="guests">Number of Guests</label>
+                        <input type="number" id="guests" class="form-input" placeholder="e.g. 50" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select Meats (Minimum 2)</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item"><input type="checkbox" name="meat" value="ribs"> Ribs</label>
+                            <label class="checkbox-item"><input type="checkbox" name="meat" value="brisket"> Brisket</label>
+                            <label class="checkbox-item"><input type="checkbox" name="meat" value="pulledpork"> Pulled Pork</label>
+                            <label class="checkbox-item"><input type="checkbox" name="meat" value="chicken"> Smoked Chicken</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="name">Contact Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Special Requests</label>
+                        <textarea id="message" class="form-textarea" rows="4" placeholder="Vegetarian options? Specific setup times?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+                    <p id="form-feedback" style="margin-top: 1rem; display: none; color: var(--accent); text-align: center;">Request sent! We'll be in touch shortly.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">The <span>Hall of Fame</span></h2>
+            </div>
+            
+            <div class="polaroid-grid">
+                <div class="polaroid reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="quote-text">I drove 3 hours just for the brisket. The smoke ring was perfect and that mustard sauce is something else entirely.</p>
+                    <div class="author">Mike R.</div>
+                    <div class="role">BBQ Enthusiast</div>
+                </div>
+                
+                <div class="polaroid reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="quote-text">Best atmosphere in Kentucky. Feels like an old western saloon. The ribs literally fell off the bone.</p>
+                    <div class="author">Sarah L.</div>
+                    <div class="role">Local Food Blogger</div>
+                </div>
+                
+                <div class="polaroid reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="quote-text">We used Terry's for our wedding catering. Guests are still talking about the pork shoulder three months later.</p>
+                    <div class="author">James T.</div>
+                    <div class="role">Happy Groom</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="display:block; margin-bottom: 1rem;">Terry's <span>BBQ</span></a>
+                    <p>Low & Slow since 1985.<br>Authentic Kentucky Smokehouse.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#meat-locker">Menu</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#catering">Catering</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Visit Us</h4>
+                    <p>4521 Bardstown Rd<br>Louisville, KY 40218</p>
+                    <br>
+                    <p>Mon-Thu: 11am - 9pm<br>Fri-Sat: 11am - 10pm<br>Sun: 12pm - 8pm</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>(502) 555-0198</p>
+                    <p>hello@terrysbbq.com</p>
+                    <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Terry's BBQ. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="tel:5025550198" style="color: white; font-weight: bold;">Call Now</a>
+        <a href="#catering" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Order</a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- SMOKE PARTICLE SYSTEM ---
+        const canvas = document.getElementById('smoke-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 100;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = -Math.random() * 1 - 0.5;
+                this.size = Math.random() * 20 + 10;
+                this.opacity = 0;
+                this.life = Math.random() * 100 + 100;
+                this.maxOpacity = Math.random() * 0.2 + 0.1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+
+                // Fade in then out
+                if (this.life > 50) {
+                    if (this.opacity < this.maxOpacity) this.opacity += 0.005;
+                } else {
+                    this.opacity -= 0.005;
+                }
+
+                if (this.life <= 0 || this.opacity <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                // Create a radial gradient for soft smoke look
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, `rgba(200, 200, 200, ${this.opacity})`);
+                gradient.addColorStop(1, `rgba(200, 200, 200, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // --- UI INTERACTIONS ---
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileNav.classList.toggle('active');
+            // Animate hamburger
+            const spans = menuToggle.querySelectorAll('span');
+            if (isMenuOpen) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileNav.classList.remove('active');
+                const spans = menuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Form Submission Handling
+        const form = document.getElementById('cateringForm');
+        const feedback = document.getElementById('form-feedback');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Basic Checkbox Validation
+            const checkboxes = document.querySelectorAll('input[name="meat"]:checked');
+            if (checkboxes.length < 2) {
+                alert("Please select at least 2 meat options.");
+                return;
+            }
+
+            // Simulate Loading
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Smoking your request...";
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+                form.reset();
+                feedback.style.display = 'block';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
