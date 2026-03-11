@@ -33,7 +33,7 @@ export default function SimpleCateringForm() {
       {status === "success" ? (
         <div className="text-center py-8 bg-green-50 border border-green-200 rounded">
           <p className="text-green-800 font-bold">Request Received!</p>
-          <p className="text-green-700 text-sm">We'll contact you shortly.</p>
+          <p className="text-green-700 text-sm">We&apos;ll contact you shortly.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">

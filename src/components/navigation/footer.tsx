@@ -62,7 +62,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="font-body text-muted text-xs mt-4">
-              &copy; {new Date().getFullYear()} Terry's BBQ. All rights reserved.
+              &copy; {new Date().getFullYear()} Terry&apos;s BBQ. All rights reserved.
             </p>
             <div className="flex gap-4 text-xs">
               <a href="#" className="text-muted hover:text-white">Privacy Policy</a>

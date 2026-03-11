@@ -62,7 +62,7 @@ export function CateringCTA() {
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <h3 className="text-2xl font-serif text-white mb-2">Request Received!</h3>
-                  <p className="text-gray-300">We'll contact you shortly to discuss your event.</p>
+                  <p className="text-gray-300">We&apos;ll contact you shortly to discuss your event.</p>
                 </div>
               ) : (
                 <>

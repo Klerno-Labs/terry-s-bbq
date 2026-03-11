@@ -40,7 +40,7 @@ export default function CateringForm() {
       <div className="text-center py-12 bg-surface border border-accent/30 rounded-sm">
         <div className="text-accent text-6xl mb-4">✓</div>
         <h3 className="font-heading text-3xl text-white mb-2">Request Received!</h3>
-        <p className="font-body text-muted">We'll be in touch within 24 hours to discuss your event.</p>
+        <p className="font-body text-muted">We&apos;ll be in touch within 24 hours to discuss your event.</p>
         <Button onClick={() => setStatus("idle")} className="mt-6">Send Another</Button>
       </div>
     );
