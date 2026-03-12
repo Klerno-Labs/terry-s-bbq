@@ -30,7 +30,7 @@ export default function MenuCard({ name, description, price, imageSrc, imageAlt,
       {/* Favorite Button */}
       <button
         onClick={() => setIsFavorited(!isFavorited)}
-        aria-label="Add to favorites&quot;
+        aria-label="Add to favorites"
         className="absolute top-3 right-3 z-10 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
       >
         <Heart

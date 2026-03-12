@@ -15,7 +15,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener(&quot;scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -79,7 +79,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            aria-label={isMobileOpen ? &quot;Close menu" : "Open menu"}
+            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             className="text-white hover:text-accent transition-colors"
           >
             {isMobileOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}

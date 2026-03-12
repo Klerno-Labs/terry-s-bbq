@@ -13,7 +13,7 @@ interface FormData {
 
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: &quot;",
+    name: "",
     email: "",
     phone: "",
     message: "",
@@ -21,7 +21,7 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [honeypot, setHoneypot] = useState(&quot;");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,7 +36,7 @@ export function ContactForm() {
 
     // Basic client-side validation
     if (!formData.name || !formData.email || !formData.message) {
-      setError(&quot;Please fill in all required fields.");
+      setError("Please fill in all required fields.");
       setIsSubmitting(false);
       return;
     }
@@ -82,7 +82,7 @@ export function ContactForm() {
         name="_gotcha"
         value={honeypot}
         onChange={(e) => setHoneypot(e.target.value)}
-        className="hidden&quot;
+        className="hidden"
         tabIndex={-1}
         autoComplete="off"
       />
@@ -177,7 +177,7 @@ export function ContactForm() {
         className="w-full"
         disabled={isSubmitting}
       >
-        {isSubmitting ? &quot;Sending..." : "Send Message"}
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );

@@ -15,7 +15,7 @@ export default function CateringPage() {
 
   const packages = [
     {
-      name: &quot;The Crew",
+      name: "The Crew",
       size: "Feeds 10-15",
       price: "$199",
       features: ["5 lbs Meat Choice", "2 Large Sides", "Buns & Sauce", "Paper Goods"],
@@ -118,7 +118,7 @@ export default function CateringPage() {
               <div key={i} className="border border-gray-200 rounded-lg overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex justify-between items-center p-6 bg-gray-50 hover:bg-gray-100 transition-colors text-left&quot;
+                  className="w-full flex justify-between items-center p-6 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
                 >
                   <span className="font-bold text-textMain font-heading text-lg">{faq.q}</span>
                   <ChevronDown className={`w-5 h-5 text-primary transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
