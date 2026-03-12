@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/terry-s-bbq',
   output: 'export',
   trailingSlash: true,
   images: {
