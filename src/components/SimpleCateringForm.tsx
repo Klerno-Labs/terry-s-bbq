@@ -10,7 +10,7 @@ export default function SimpleCateringForm() {
     guests: "",
     date: ""
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(&quot;idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ export default function SimpleCateringForm() {
               required
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain"
+              className="w-full bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain&quot;
             />
           </div>
           <div>
@@ -54,7 +54,7 @@ export default function SimpleCateringForm() {
               required
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain"
+              className="w-full bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain&quot;
             />
           </div>
           <div className="flex gap-4">
@@ -65,14 +65,14 @@ export default function SimpleCateringForm() {
               min="10"
               value={formData.guests}
               onChange={(e) => setFormData({...formData, guests: e.target.value})}
-              className="w-1/2 bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain"
+              className="w-1/2 bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain&quot;
             />
             <input
               type="date"
               required
               value={formData.date}
               onChange={(e) => setFormData({...formData, date: e.target.value})}
-              className="w-1/2 bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain"
+              className="w-1/2 bg-bg border-b-2 border-textMuted/30 p-2 focus:outline-none focus:border-primary transition-colors text-textMain&quot;
             />
           </div>
           <button

@@ -12,7 +12,7 @@ export default function Footer() {
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
     // Logic for newsletter signup would go here
-    console.log("Newsletter signup:", email);
+    console.log(&quot;Newsletter signup:", email);
     setEmail("");
     alert("Thanks for subscribing!");
   };
@@ -106,7 +106,7 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-darkSurface border border-gray-600 text-white px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
+                  className="bg-darkSurface border border-gray-600 text-white px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors&quot;
                 />
                 <button 
                   type="submit" 

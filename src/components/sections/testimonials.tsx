@@ -43,7 +43,7 @@ export default function Testimonials() {
                   <span key={k}>★</span>
                 ))}
               </div>
-              <p className="font-marker text-xl text-gray-400 mb-6 italic">"{t.text}"</p>
+              <p className="font-marker text-xl text-gray-400 mb-6 italic">"{t.text}&quot;</p>
               <div className="font-subheading text-white uppercase text-sm">
                 {t.name} <span className="text-muted block text-xs normal-case not-italic mt-1">{t.role}</span>
               </div>

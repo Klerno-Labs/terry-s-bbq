@@ -22,7 +22,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(&quot;scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -66,7 +66,7 @@ export function Header() {
           <button
             className="md:hidden text-white p-2"
             onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label="Open menu&quot;
           >
             <Menu className="w-8 h-8" />
           </button>
@@ -83,7 +83,7 @@ export function Header() {
         <button
           className="absolute top-6 right-6 text-white p-2"
           onClick={() => setIsMobileMenuOpen(false)}
-          aria-label="Close menu"
+          aria-label="Close menu&quot;
         >
           <X className="w-8 h-8" />
         </button>

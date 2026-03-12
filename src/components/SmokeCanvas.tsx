@@ -9,7 +9,7 @@ export default function SmokeCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext(&quot;2d");
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -96,7 +96,7 @@ export default function SmokeCanvas() {
     animate();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener(&quot;resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 // We will handle form logic here.
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">(&quot;idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 </p>
                 <Button 
                   onClick={() => {
-                    setFormState("idle");
+                    setFormState(&quot;idle");
                     setFormData({ name: "", email: "", phone: "", date: "", guests: "", message: "", _gotcha: "" });
                   }}
                   className="mt-8"

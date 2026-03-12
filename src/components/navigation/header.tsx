@@ -10,7 +10,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(&quot;scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -54,7 +54,7 @@ export default function Header() {
           <button
             className="md:hidden text-white"
             onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label="Open menu&quot;
           >
             <Menu className="w-8 h-8" />
           </button>
@@ -67,7 +67,7 @@ export default function Header() {
           <div className="flex justify-end mb-8">
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white hover:text-primary"
+              className="text-white hover:text-primary&quot;
               aria-label="Close menu"
             >
               <X className="w-10 h-10" />
@@ -79,7 +79,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-heading text-4xl text-white hover:text-primary transition-colors"
+                className="font-heading text-4xl text-white hover:text-primary transition-colors&quot;
               >
                 {link.name}
               </a>

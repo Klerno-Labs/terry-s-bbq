@@ -9,7 +9,7 @@ import { images } from "@/config/images";
 
 export function HeroHome() {
   const scrollToMenu = () => {
-    document.getElementById("featured-menu")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(&quot;featured-menu")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

@@ -17,7 +17,7 @@ export function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(&quot;scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -47,7 +47,7 @@ export function Navbar() {
 
           <nav className="hidden md:flex items-center gap-8">
             {[
-              { href: "/", label: "Home" },
+              { href: &quot;/", label: "Home" },
               { href: "/menu", label: "Menu" },
               { href: "/catering", label: "Catering" },
               { href: "/contact", label: "Contact" },
@@ -82,7 +82,7 @@ export function Navbar() {
             
             <button
               onClick={() => setMobileOpen(true)}
-              className="md:hidden p-2 text-white hover:text-accent transition-colors"
+              className="md:hidden p-2 text-white hover:text-accent transition-colors&quot;
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />

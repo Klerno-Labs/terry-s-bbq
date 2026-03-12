@@ -66,7 +66,7 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="relative h-80 w-full rounded-xl overflow-hidden mb-6 border border-white/10 mx-auto max-w-sm">
                 <Image
-                  src={images.team.src}
+                  src={(images as Record<string, string[]>).team ?? [].src}
                   alt="Terry Foster"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all"

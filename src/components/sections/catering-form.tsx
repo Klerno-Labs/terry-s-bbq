@@ -11,7 +11,7 @@ export default function CateringForm() {
     guests: "",
     message: ""
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(&quot;idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function CateringForm() {
         <div className="text-accent text-6xl mb-4">✓</div>
         <h3 className="font-heading text-3xl text-white mb-2">Request Received!</h3>
         <p className="font-body text-muted">We&apos;ll be in touch within 24 hours to discuss your event.</p>
-        <Button onClick={() => setStatus("idle")} className="mt-6">Send Another</Button>
+        <Button onClick={() => setStatus(&quot;idle")} className="mt-6">Send Another</Button>
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default function CateringForm() {
             id="name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body"
+            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body&quot;
             placeholder="John Doe"
           />
         </div>
@@ -69,7 +69,7 @@ export default function CateringForm() {
             id="email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body"
+            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body&quot;
             placeholder="john@example.com"
           />
         </div>
@@ -84,7 +84,7 @@ export default function CateringForm() {
             id="phone"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body"
+            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body&quot;
             placeholder="(502) 555-0123"
           />
         </div>
@@ -96,7 +96,7 @@ export default function CateringForm() {
             id="date"
             value={formData.date}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body [color-scheme:dark]"
+            className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body [color-scheme:dark]&quot;
           />
         </div>
       </div>
@@ -108,7 +108,7 @@ export default function CateringForm() {
           id="guests"
           value={formData.guests}
           onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-          className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body appearance-none cursor-pointer"
+          className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body appearance-none cursor-pointer&quot;
         >
           <option value="" disabled>Select number of guests</option>
           <option value="10-25">10 - 25 Guests</option>
@@ -125,7 +125,7 @@ export default function CateringForm() {
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body"
+          className="w-full bg-background border-b-2 border-gray-600 text-white p-4 focus:border-primary focus:outline-none transition-colors font-body&quot;
           placeholder="Tell us about your event, dietary restrictions, or specific meat preferences..."
         ></textarea>
       </div>

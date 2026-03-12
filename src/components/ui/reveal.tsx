@@ -12,7 +12,7 @@ interface RevealProps {
 
 export const Reveal = ({ children, width = "fit-content", delay = 0, className }: RevealProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: &quot;-100px" });
 
   return (
     <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }} className={className}>

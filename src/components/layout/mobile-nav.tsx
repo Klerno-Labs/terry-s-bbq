@@ -43,7 +43,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
 
         <nav className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
           {[
-            { href: "/", label: "Home" },
+            { href: &quot;/", label: "Home" },
             { href: "/menu", label: "Our Menu" },
             { href: "/catering", label: "Catering & Events" },
             { href: "/contact", label: "Location & Hours" },
