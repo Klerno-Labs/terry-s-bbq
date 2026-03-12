@@ -10,11 +10,6 @@ import Link from "href";
 import { useState } from "react";
 import { ChevronDown, Check } from "lucide-react";
 
-export const metadata = {
-  title: "Catering",
-  description: "Book Terry's BBQ for your next event.",
-};
-
 export default function CateringPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 

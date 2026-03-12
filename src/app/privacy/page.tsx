@@ -15,26 +15,6 @@ import { useEffect } from "react";
 // which Next.js 14 supports even in client components (with warnings in older versions, 
 // but valid in 14+). For strict compliance, we keep the metadata export.
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Terry's BBQ",
-  description: "Read Terry's BBQ privacy policy to learn how we protect your information when you order catering or visit our Kentucky tavern.",
-  openGraph: {
-    title: "Privacy Policy | Terry's BBQ",
-    description: "Terry's BBQ commitment to your privacy. We slow smoke everything, including our data policies.",
-    url: "https://terrysbbq.com/privacy",
-    siteName: "Terry's BBQ",
-    images: [
-      {
-        url: images["hero"].src,
-        width: images["hero"].width,
-        height: images["hero"].height,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-};
-
 export default function PrivacyPolicy() {
   useEffect(() => {
     window.scrollTo(0, 0);

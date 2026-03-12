@@ -6,26 +6,6 @@ import { images } from "@/config/images";
 import { Metadata } from "next";
 import { useEffect } from "react";
 
-export const metadata: Metadata = {
-  title: "Terms of Service | Terry's BBQ",
-  description: "Terms of service for Terry's BBQ catering and dining. Understand our policies regarding orders, payments, and services.",
-  openGraph: {
-    title: "Terms of Service | Terry's BBQ",
-    description: "The rules of the table. Read Terry's BBQ terms and conditions.",
-    url: "https://terrysbbq.com/terms",
-    siteName: "Terry's BBQ",
-    images: [
-      {
-        url: images["hero"].src,
-        width: images["hero"].width,
-        height: images["hero"].height,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-};
-
 export default function TermsOfService() {
   useEffect(() => {
     window.scrollTo(0, 0);

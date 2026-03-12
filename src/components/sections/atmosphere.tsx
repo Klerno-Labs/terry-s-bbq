@@ -23,10 +23,10 @@ export default function Atmosphere() {
           <div className="w-24 h-2 bg-accent mb-8" />
           
           <p className="font-body text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-            Terry&apos;s BBQ isn't just a restaurant; it's a time capsule. Built from reclaimed barn wood in the heart of Kentucky, our tavern was designed to feel like the old western halls where cattle drivers rested their heads.
+            Terry&apos;s BBQ isn&apos;t just a restaurant; it's a time capsule. Built from reclaimed barn wood in the heart of Kentucky, our tavern was designed to feel like the old western halls where cattle drivers rested their heads.
           </p>
           <p className="font-body text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-            We believe BBQ is an act of patience. Our pits have been running since 1985, infusing every cut of chicken, pork, and beef with that deep, hickory flavor you can&apos;t fake. Whether you're here for a plate of ribs or a cold bourbon, you're family.
+            We believe BBQ is an act of patience. Our pits have been running since 1985, infusing every cut of chicken, pork, and beef with that deep, hickory flavor you can&apos;t fake. Whether you&apos;re here for a plate of ribs or a cold bourbon, you're family.
           </p>
 
           <div className="flex items-center gap-4">
