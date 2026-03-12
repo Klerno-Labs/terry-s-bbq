@@ -83,3 +83,4 @@ export const images = {
 } as const;
 
 export type ImageSlot = keyof typeof images;
+export default images;

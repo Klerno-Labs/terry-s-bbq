@@ -49,7 +49,7 @@ export default function CateringPage() {
       <section className="relative h-[60vh] flex items-center justify-center bg-darkSurface">
         <div className="absolute inset-0">
             <Image 
-              src={images["service-1"].src}
+              src={((images["service-1"] ?? { src: "/placeholder.jpg", alt: "" }))?.src ?? "/placeholder.jpg"}
               alt="Catering Spread"
               fill
               className="object-cover opacity-50"
