@@ -17,8 +17,8 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
           <div className="relative h-[500px] rounded-xl overflow-hidden border border-white/10">
              <Image
-              src={images.about.src}
-              alt={images.about.alt}
+              src={(images?.about?.src ?? "/placeholder.jpg")}
+              alt={(images?.about?.alt ?? "")}
               fill
               className="object-cover sepia hover:sepia-0 transition-all duration-700"
               sizes="(max-width: 768px) 100vw, 50vw"

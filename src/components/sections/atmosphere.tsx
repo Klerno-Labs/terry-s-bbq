@@ -6,8 +6,8 @@ export default function Atmosphere() {
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src={images.atmosphere.src}
-          alt={images.atmosphere.alt}
+          src={(images?.atmosphere?.src ?? "/placeholder.jpg")}
+          alt={(images?.atmosphere?.alt ?? "")}
           fill
           className="object-cover"
           sizes="100vw"

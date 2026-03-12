@@ -11,8 +11,8 @@ export default function HeroSection() {
       {/* Background Image with Slow Zoom */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src={images.hero.src}
-          alt={images.hero.alt}
+          src={(images?.hero?.src ?? "/placeholder.jpg")}
+          alt={(images?.hero?.alt ?? "")}
           fill
           priority
           className="object-cover animate-slow-zoom"

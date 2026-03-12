@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     description: "Experience the best slow-smoked meats in Kentucky. Our old western tavern serves up authentic flavor with a mustard twist.",
     images: [
       {
-        url: images.hero.src,
-        width: images.hero.width,
-        height: images.hero.height,
-        alt: images.hero.alt,
+        url: (images?.hero?.src ?? "/placeholder.jpg"),
+        width: (images?.hero?.width ?? 400),
+        height: (images?.hero?.height ?? 400),
+        alt: (images?.hero?.alt ?? ""),
       }
     ]
   }
@@ -53,7 +53,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Restaurant",
               "name": "Terry's BBQ",
-              "image": images.hero.src,
+              "image": (images?.hero?.src ?? "/placeholder.jpg"),
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "4521 Westheimer Rd",

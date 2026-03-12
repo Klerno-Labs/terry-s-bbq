@@ -11,8 +11,8 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={images.hero.src}
-          alt={images.hero.alt}
+          src={(images?.hero?.src ?? "/placeholder.jpg")}
+          alt={(images?.hero?.alt ?? "")}
           priority={true}
           fill
           className="object-cover"
